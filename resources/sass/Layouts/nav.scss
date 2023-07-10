@@ -1,0 +1,88 @@
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+.navbar {
+    z-index: 1;
+    position: relative;
+    margin-top: -10px;
+
+    .navbar-brand {
+        font-family: Acme;
+        font-size: 40px;
+    }
+
+    .aktif {
+        text-transform: uppercase;
+
+        &:hover::after {
+            content: '';
+            display: block;
+            border-bottom: 3px solid rgb(231, 165, 95);
+            width: 50%;
+            margin: auto;
+            padding-bottom: 5px;
+            margin-bottom: -8px;
+        }
+    }
+
+    .navbar-brand,
+    .nav-link {
+        text-transform: uppercase;
+        color: white !important;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+    }
+
+    .dropdown {
+        button {
+            background-color: transparent;
+            border: none;
+            border-radius: 30px;
+
+            &:hover {
+                color: rgb(231, 165, 95);
+            }
+        }
+        i {
+            font-size: 23px;
+        }
+
+        .dropdown-menu {
+            li {
+                a {
+                    background-color: white;
+                    display: block;
+
+                    &:hover {
+                        background-color: rgb(231, 165, 95);
+                    }
+                }
+            }
+        }
+    }
+
+    .navbar-nav {
+        .badge {
+            top: 50px;
+            margin: 1px;
+            background-color: rgb(231, 165, 95);
+            color: black;
+        }
+
+        .Cart {
+            a {
+                font-size: 16px;
+
+                &:hover {
+                    color: rgb(231, 165, 95) !important;
+                }
+            }
+
+            i{
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+
