@@ -1,0 +1,89 @@
+.Jumbotron {
+    height: 700px;
+    background-image: url('../../images/BgIndex.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 0 -500px;
+    color: #eee;
+    overflow: hidden;
+    position: relative;
+    margin-top: -60px;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.6));
+        position: absolute;
+        bottom: 0;
+    }
+
+    .komponen {
+        z-index: 1;
+        position: relative;
+    }
+
+    .display-4 {
+        color: white;
+        margin-top: 200px;
+        /* font-weight: 50; */
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+        font-size: 80px;
+        margin-bottom: 30px;
+
+        span {
+            font-weight: 800;
+            color: rgb(231, 165, 95);
+        }
+    }
+
+    .btn {
+        font-size: 22px;
+        border-radius: 20px;
+        background-color: rgb(231, 165, 95);
+
+        &:hover {
+            color: rgb(231, 165, 95);
+            background-color: rgb(88, 83, 79);
+        }
+    }
+}
+
+
+.info-panel {
+    box-shadow: 0 3px 20px rgba(0,0,0,0.5 );
+    border-radius: 14px;
+    margin-top: -100px !important;
+    background-color: rgba(149, 145, 139, 0.5);
+    padding: 30px;
+    margin-bottom: 60px;
+    z-index: 1;
+
+    img {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-top: 5px;
+        color: rgb(231, 165, 95);
+    }
+
+    p {
+        font-size: 15px;
+        color: white;
+        margin-top: -5px;
+        font-weight: 200;
+    }
+}
+
+
+.Main {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(170, 120, 50, 0.821), rgba(0,0,0,1));
+}
