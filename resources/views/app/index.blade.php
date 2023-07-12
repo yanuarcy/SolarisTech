@@ -6,6 +6,9 @@
 @vite('resources/sass/app/index.scss')
 @vite('resources/sass/Layouts/nav.scss')
 @vite('resources/sass/Layouts/footer.scss')
+@vite('resources/sass/Layouts/catalog.scss')
+
+
 
 @section('Content')
 
@@ -58,6 +61,11 @@
     </div>
 
 
+    <div class="main">
+        @include('Layouts.catalog')
+    </div>
+
     @include('Layouts.footer')
+
 
 @endsection
