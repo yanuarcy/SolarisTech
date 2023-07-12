@@ -1,0 +1,66 @@
+.Cb {
+    padding-bottom: 5%;
+}
+
+.LeftCard {
+    background: #696464cd;
+    border-radius: 10px 0 0 10px;
+}
+
+.RightCard {
+    background: #D9D9D9;
+    border-radius: 0 10px 10px 0;
+}
+
+.IconContact {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.IconContact .Instagram i {
+    font-size: 40px;
+    margin-right: 35px;
+    cursor: pointer;
+    color: red;
+    transition: 0.5s ease;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.Facebook i {
+    font-size: 40px;
+    margin-right: 35px;
+    cursor: pointer;
+    color: blue;
+    transition: 0.5s ease;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.Youtube i {
+    font-size: 40px;
+    margin-right: 35px;
+    cursor: pointer;
+    color: red;
+    transition: 0.5s ease;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.Twitter i {
+    font-size: 40px;
+    cursor: pointer;
+    color: lightseagreen;
+    transition: 0.5s ease;
+
+    &:hover {
+        color: white;
+    }
+}
