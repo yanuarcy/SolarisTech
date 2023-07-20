@@ -79,6 +79,10 @@
                             @else
 
                                 <li>
+                                    <a class="dropdown-item" href="{{ route('CustProfile') }}">My Profile</a>
+                                </li>
+                                
+                                <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     style="color: red;"
                                     onclick="event.preventDefault();
