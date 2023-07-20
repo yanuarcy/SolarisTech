@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link aktif" href="">
+                    <a class="nav-link aktif" href="{{ route('GetProduk') }}">
                         Product
                     </a>
                 </li>

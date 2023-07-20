@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
 
-route::fallback(function(){
+route::fallback(function () {
     return view('app.404');
 });
 
-Route::group(['middleware' => ['auth', 'cekrole:admin']], function(){
+Route::group(['middleware' => ['auth', 'cekrole:admin']], function () {
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('Dashboard');
 });
 
@@ -35,3 +35,5 @@ Route::resource('Admin', AdminController::class);
 
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk');
+Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
