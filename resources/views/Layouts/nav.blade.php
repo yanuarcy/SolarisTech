@@ -4,8 +4,10 @@
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand text-white" style="font-size: 24px;" href="{{ route('Home') }}"><i class="bi bi-cpu"></i> SolarisTech</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand text-white" style="font-size: 24px;" href="{{ route('Home') }}"><i class="bi bi-cpu"></i>
+            SolarisTech</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -42,7 +44,8 @@
                 </li>
                 <li class="nav-item">
                     <div class="dropdown">
-                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             @guest
                                 <i class="bi bi-person-fill"></i>
                             @else
@@ -55,10 +58,10 @@
 
                                 @if (Route::has('login'))
                                     @auth
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        style="color: red;"
-                                        onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">Log Out
+                                        <a class="dropdown-item" href="{{ route('logout') }}" style="color: red;"
+                                            onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">Log
+                                            Out
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
@@ -75,18 +78,18 @@
                                         <a class="dropdown-item" href="{{ route('register') }}">Sign Up</a>
                                     </li>
                                 @endif
-
                             @else
+                                @if (auth()->user()->role == 'user')
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('CustProfile') }}">My Profile</a>
+                                    </li>
+                                @endif
 
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('CustProfile') }}">My Profile</a>
-                                </li>
-                                
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                    style="color: red;"
-                                    onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Log Out
+                                    <a class="dropdown-item" href="{{ route('logout') }}" style="color: red;"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Log
+                                        Out
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -97,9 +100,6 @@
 
                         </ul>
                     </div>
-                    {{-- <a class="nav-link @if ($RouteSaatIni == '')
-                        BarangLink
-                    @endif" href=""><i style="font-size: 22px;" class="bi bi-person-fill"></i></a> --}}
                 </li>
             </ul>
         </div>
