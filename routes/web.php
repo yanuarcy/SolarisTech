@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'cekrole:admin']], function () {
 });
 
 Route::resource('Admin', AdminController::class);
+Route::resource('/Dashboard/Product', ProductController::class);
 
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate']);
