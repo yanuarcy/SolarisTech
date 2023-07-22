@@ -1,3 +1,7 @@
+@php
+    $RouteSaatIni = Route::currentRouteName();
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -15,7 +19,9 @@
     @vite('resources/sass/app.scss')
     {{-- @vite('resources/sass/nav.scss') --}}
 </head>
-<body>
+<body class="@if ($RouteSaatIni == 'CustProfile')
+BgCustProfile
+@endif">
 
     {{-- @include('Layouts.nav') --}}
     <div id="app">
