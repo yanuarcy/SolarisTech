@@ -42,4 +42,37 @@ class OurProductController extends Controller
 
         return view('Produk.index', compact('Tittle', 'products', 'Kategoris'));
     }
+
+    public function addToCart($id) {
+        $product = Product::find($id);
+
+        if (auth()->check()) {
+            $userId = auth()->user()->id;
+            $cartKey = 'cart_' . $userId;
+            $cart = Cache::get($cartKey, []);
+        } else {
+            $cart = Cache::get('cart', []);
+        }
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "nm_produk" => $product->nm_produk,
+                "photo" => $product->photo,
+                "hg_produk" => $product->hg_produk,
+                "quantity" => 1
+            ];
+        }
+
+        if (auth()->check()) {
+            Cache::put($cartKey, $cart);
+        } else {
+            Cache::put('cart', $cart);
+        }
+
+
+
+        return redirect()->route('GetProduk');
+    }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OurProductController;
@@ -23,6 +24,8 @@ use App\Http\Controllers\ProfileCust;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
+Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
+
 
 route::fallback(function () {
     return view('app.404');
@@ -38,5 +41,8 @@ Route::resource('/Dashboard/Product', ProductController::class);
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk');
+
+Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
-Route::get('/CustProfile', [ProfileCust::class, 'index'])->name('CustProfile')->middleware('auth', 'cekrole:user');
+Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
+Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
