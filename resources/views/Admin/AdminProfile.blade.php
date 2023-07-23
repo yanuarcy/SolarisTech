@@ -34,19 +34,10 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12 d-grid">
-<<<<<<< HEAD
-                        <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Back</a>
-=======
-                        <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg mt-3"><i
-                                class="bi-arrow-left-circle me-2"></i> Back</a>
->>>>>>> 11401b28d35a9eaaffd3a0574163d105c55cbf05
+                        <a href="{{ route('Dashboard') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Back</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 11401b28d35a9eaaffd3a0574163d105c55cbf05

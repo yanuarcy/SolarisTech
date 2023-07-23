@@ -1,0 +1,61 @@
+.select-menu {
+    width: 250px;
+    margin-top: 10%;
+    // margin: 200px auto;
+}
+
+.select-menu .select-btn {
+    display: flex;
+    height: 55px;
+    background: #8962f5;
+    padding: 25px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 15px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    box-shadow: 0 0 1px rgba(137, 98, 245, .5);
+}
+
+.select-menu .options {
+    z-index: 1;
+    position: relative;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: -130%;
+    border-radius: 15px;
+    background: #eeebf4;
+    border: 3px solid #bfb2ed;
+    box-shadow: 0 0 10px rgba(137, 98, 245, .2);
+    transition: .3s ease;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.select-menu.active .options {
+    visibility: visible;
+    opacity: 1;
+}
+
+.options .option {
+    display: flex;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 20px;
+    border-radius: 15px;
+    align-items: center;
+    background: #eeebf4;
+    transition: .5s ease;
+}
+
+.options .option:hover {
+    background: #e3dff2;
+}
+
+.option .option-text {
+    font-size: 15px;
+    color: #231a42;
+}
