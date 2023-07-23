@@ -91,7 +91,7 @@
 
         <div class="b-example-divider"></div>
         <div class="content">
-            @yield('contentdashboard')
+            @yield('KontenDashboard')
         </div>
     </main>
 
