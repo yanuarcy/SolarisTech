@@ -44,7 +44,7 @@ Route::resource('/Dashboard/Product', ProductController::class);
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk');
-<<<<<<< HEAD
+
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
 Route::get('/CustProfile', [ProfileCust::class, 'index'])->name('CustProfile')->middleware('auth', 'cekrole:user');
 
