@@ -16,12 +16,7 @@ class ProductController extends Controller
     {
         $Tittle = 'SolarisTech - Product';
 
-        $products = Product::all();
-        foreach ($products as $produk) {
-            $produk->hg_produk = 'Rp. ' . number_format($produk->hg_produk, 0, ',', '.');
-        }
-
-        return view('Admin.Stuff.ProdukDisplay', ['Tittle' => $Tittle, 'products' => $products]);
+        return view('Admin.Stuff.ProdukDisplay', ['Tittle' => $Tittle]);
     }
 
     /**
@@ -83,17 +78,6 @@ class ProductController extends Controller
 
         // Mengubah string menjadi integer
         $HargaProduk = (int)$hargaProduk;
-        // $hargaProduk = preg_replace('/[^0-9]/', '', $request->harga_produk);
-
-        // // Mengubah string menjadi integer
-        // $HargaProduk = (int)$hargaProduk;
-
-        // Menghapus karakter non-angka dari harga_produk
-        // $hargaProduk = str_replace('Rp', '', $request->harga_produk);
-        // $HargaProduk = str_replace('.', '', $hargaProduk);
-
-        // Mengubah string menjadi integer
-        // $HargaProduk = intval($hargaProduk);
         // Simpan data produk ke database
         $product = New Product;
         $product->kategori_id = $request->kategori;
@@ -140,5 +124,23 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getData(Request $request)
+    {
+        $products = Product::with('kategori', 'user');
+
+
+        if ($request->ajax()) {
+            return datatables()->of($products)
+                ->addIndexColumn()
+                ->addColumn('actions', function($products) {
+                    return view('Layouts.actions', compact('products'));
+                })
+                ->editColumn('hg_produk', function ($product) {
+                    return 'Rp. ' . number_format($product->hg_produk, 0, ',', '.');
+                })
+                ->toJson();
+        }
     }
 }

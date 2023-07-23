@@ -1,6 +1,13 @@
 @extends('Template.template')
 
-@vite(['resources/sass/Produk/index.scss', 'resources/sass/Produk/dropdown.scss', 'resources/sass/Layouts/nav.scss', 'resources/js/produk.js'])
+@vite([
+
+    'resources/sass/Produk/index.scss',
+    'resources/sass/Produk/dropdown.scss',
+    'resources/sass/Layouts/nav.scss',
+    'resources/js/Produk/DropdownKategori.js'
+
+])
 
 @section('Content')
     @include('Layouts.nav')

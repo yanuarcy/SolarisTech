@@ -1,6 +1,5 @@
 @extends('Admin.Dashboard')
 
-
 @section('contentdashboard')
     <div class="container mt-4">
         <div class="row mb-0">
@@ -15,20 +14,22 @@
         </div>
         <hr>
         <div class="table-responsive border p-3 rounded-3">
-            <table class="table table-bordered table-hover table-striped mb-0 bg-white">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="ProductTable">
                 <thead>
                     <tr>
-                        <th>Kategori ID</th>
-                        <th>Member ID</th>
-                        <th>Nama Produk</th>
-                        <th>Harga Produk</th>
+                        <th align="center">ID</th>
+                        <th>No. </th>
+                        <th>Kategori</th>
+                        <th>Member</th>
+                        <th style="width: 15%">Nama Produk</th>
+                        <th style="width: 15%">Harga Produk</th>
                         <th>Stok</th>
                         <th>Deskripsi Produk</th>
                         <th>Foto Produk</th>
-                        <th></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                {{-- <tbody>
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->kategori->nm_kategori }}</td>
@@ -47,8 +48,49 @@
                             <td>@include('Layouts.actions')</td>
                         </tr>
                     @endforeach
-                </tbody>
+                </tbody> --}}
             </table>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $("#ProductTable").DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: "/getProduct",
+                columns: [
+
+                    { data: "id", name: "id", visible: false },
+                    { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false, searchable: false },
+                    { data: "kategori.nm_kategori", name: "kategori.nm_kategori"},
+                    { data: "user.name", name: "user.name"},
+                    { data: "nm_produk", name: "nm_produk" },
+                    { data: "hg_produk", name: "hg_produk" },
+                    { data: "stok", name: "stok" },
+                    { data: "desc_produk", name: "desc_produk" },
+                    {
+                        data: "photo",
+                        name: "photo",
+                        render: function (data, type, row) {
+                            if (data) {
+                                return '<img src="' + "{{ Vite::asset('resources/images/') }}" + data + '" alt="' + row.nm_produk + '" width="100">';
+                            } else {
+                                return 'Gambar tidak tersedia';
+                            }
+                        },
+                    },
+                    { data: "actions", name: "actions", orderable: false, searchable: false },
+                ],
+                order: [[0, "desc"]],
+                lengthMenu: [
+                    [5, 10, 25, 50, 100, -1],
+                    [5, 10, 25, 50, 100, "All"],
+                ],
+            });
+
+        });
+    </script>
+@endpush
