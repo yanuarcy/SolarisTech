@@ -3,7 +3,7 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 .navbar {
-    z-index: 1;
+    z-index: 2;
     position: relative;
     margin-top: -10px;
 
@@ -34,6 +34,8 @@
     }
 
     .dropdown {
+        z-index: 2;
+
         button {
             background-color: transparent;
             border: none;
@@ -43,6 +45,7 @@
                 color: rgb(231, 165, 95);
             }
         }
+
         i {
             font-size: 23px;
         }
@@ -62,6 +65,55 @@
     }
 
     .navbar-nav {
+
+        .JarakKiriCart {
+            margin-left: 600px;
+        }
+
+        .search-box {
+            position: relative;
+            background-color: red;
+            height: 40px;
+            width: 250px;
+            margin: 10px 5px;
+            overflow: hidden;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.314);
+
+            input {
+                width: 100%;
+                height: 100%;
+                padding: 5px 20px;
+                outline: none;
+                border: none;
+                background-color: #eeeeff;
+
+                &::placeholder {
+                    font-size: 15px;
+                    font-weight: 600px;
+                }
+            }
+
+            i {
+                position: absolute;
+                right: 0;
+                font-size: 16px;
+                color: #001A23;
+                background-color: #d7b377;
+                height: 40px;
+                width: 40px;
+                text-align: center;
+                padding: 10px 0;
+                transition: 0.5s;
+                cursor: pointer;
+
+                &:hover {
+                    font-size: 22px;
+                }
+            }
+        }
+
         .badge {
             top: 50px;
             margin: 1px;
@@ -78,11 +130,83 @@
                 }
             }
 
-            i{
+            i {
                 font-size: 22px;
+            }
+
+            .dropdown {
+                float: right;
+                padding-right: 30px;
+            }
+
+            .dropdown-menu {
+                padding: 20px;
+                top: 30px !important;
+                width: 350px !important;
+                left: -110px !important;
+                box-shadow: 0px 5px 30px black;
+                background-color: #001A23;
+            }
+
+            .total-header-section {
+                border-bottom: 1px solid #d2d2d2;
+            }
+
+            .total-section p {
+                margin-bottom: 20px;
+            }
+
+            .cart-detail-scroll {
+                max-height: 300px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+
+            .cart-detail {
+                padding: 15px 10px 0 5px;
+            }
+
+            .cart-detail-img img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                padding-left: 15px;
+            }
+
+            .cart-detail-product p {
+                margin: 0px;
+                color: white;
+                font-weight: 500;
+            }
+
+            .cart-detail .price {
+                font-size: 12px;
+                margin-right: 10px;
+                font-weight: 500;
+            }
+
+            .cart-detail .count {
+                color: white;
+            }
+
+            .checkout {
+                border-top: 1px solid #d2d2d2;
+                padding-top: 15px;
+            }
+
+            .checkout .btn-primary {
+                border-radius: 50px;
+
+            }
+
+            .dropdown-menu:before {
+                content: " ";
+                position: absolute;
+                top: -20px;
+                right: 50px;
+                border: 10px solid transparent;
+                border-bottom-color: #fff;
             }
         }
     }
 }
-
-

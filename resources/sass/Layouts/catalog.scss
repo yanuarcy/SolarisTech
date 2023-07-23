@@ -1,0 +1,35 @@
+.card {
+    width: 18rem !important;
+    margin: 2%;
+    background-color: rgb(199, 190, 181) !important;
+}
+
+.card-img-top {
+    width: 109% !important;
+    margin-left: -12px !important;
+}
+
+.carousel {
+    width: 85%;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.carousel-inner img {
+    height: 400px;
+    margin-left: -1%;
+    object-fit: contain;
+    background-color: rgb(255, 255, 255);
+}
+
+.carousel button {
+    width: 80px;
+}
+
+.carousel-indicators li {
+    background-color: rgb(62, 66, 66);
+}
+
+.carousel-indicators .active {
+    background-color: rgb(199, 155, 74);
+}
