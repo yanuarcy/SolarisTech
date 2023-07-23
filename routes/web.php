@@ -29,7 +29,7 @@ Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->nam
 
 
 
->>>>>>> 11401b28d35a9eaaffd3a0574163d105c55cbf05
+
 route::fallback(function () {
     return view('app.404');
 });
@@ -47,7 +47,7 @@ Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk')
 <<<<<<< HEAD
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
 Route::get('/CustProfile', [ProfileCust::class, 'index'])->name('CustProfile')->middleware('auth', 'cekrole:user');
-=======
+
 
 Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
 
@@ -55,4 +55,4 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
->>>>>>> 11401b28d35a9eaaffd3a0574163d105c55cbf05
+
