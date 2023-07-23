@@ -28,8 +28,6 @@ Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfi
 Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile')->middleware('auth', 'cekrole:admin');
 
 
-<<<<<<< HEAD
-=======
 
 >>>>>>> 11401b28d35a9eaaffd3a0574163d105c55cbf05
 route::fallback(function () {
