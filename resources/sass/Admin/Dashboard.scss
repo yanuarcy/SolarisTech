@@ -28,3 +28,17 @@ main {
     flex-grow: 1;
     overflow-y: auto;
 }
+
+
+.nav-item {
+    // background-color: aqua;
+
+    &:hover {
+        background-color: gray;
+    }
+
+    i {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+}

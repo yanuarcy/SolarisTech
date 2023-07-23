@@ -25,14 +25,14 @@
                     </a>
                 </li>
                 <hr>
-                <li>
+                <li class="nav-item">
                     <a href="#" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                         <i class="bi bi-person-circle"></i>    Member
                     </a>
                 </li>
                 <hr>
-                <li>
+                <li class="nav-item">
                     <a href="{{ route('Product.index')}}" class="nav-link text-white @if ($RouteSaatIni == 'Product.index')
                         active
                     @endif">
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <hr>
-                <li>
+                <li class="nav-item">
                     <a href="#" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                         <i class="bi bi-bookmarks-fill"></i>    Category
@@ -50,7 +50,7 @@
                 <hr>
 
 
-                <li>
+                <li class="nav-item">
                     <a href="#" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                         <i class="bi bi-table"></i>    Order
