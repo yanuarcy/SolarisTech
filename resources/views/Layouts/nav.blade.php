@@ -201,31 +201,6 @@
                                         </form>
                                     </li>
 
-<<<<<<< HEAD
-                            @else
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('CustProfile') }}">My Profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                    style="color: red;"
-                                    onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Log Out
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </li>
-
-                            @endguest
-
-                        </ul>
-                    </div>
-                    {{-- <a class="nav-link @if ($RouteSaatIni == '')
-                        BarangLink
-                    @endif" href=""><i style="font-size: 22px;" class="bi bi-person-fill"></i></a> --}}
-                </li>
-=======
                                 @endguest
 
                             </ul>
@@ -235,7 +210,6 @@
                         @endif" href=""><i style="font-size: 22px;" class="bi bi-person-fill"></i></a> --}}
                     </li>
                 @endif
->>>>>>> 11401b28d35a9eaaffd3a0574163d105c55cbf05
             </ul>
         </div>
     </nav>
