@@ -25,6 +25,8 @@ use App\Http\Controllers\ProfileCust;
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
 Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
+Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile')->middleware('auth', 'cekrole:admin');
+
 
 
 route::fallback(function () {

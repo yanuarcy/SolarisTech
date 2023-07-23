@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="col-md-12 inputBox">
-                            <a class="Back" href="{{ route('Home') }}"><i class="bi-arrow-left-circle"></i> Back</a>
+                            <a class="Back" href="{{ route('Dashboard') }}"><i class="bi-arrow-left-circle"></i> Back</a>
                             <input type="submit" value="Sign Up">
                         </div>
                     </form>
