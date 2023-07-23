@@ -5,7 +5,7 @@
     'resources/js/Produk/CreateProduk.js'
 ])
 
-@section('KontenDashboard')
+@section('contentdashboard')
 
     <div class="container-sm mt-5">
         <form action="{{ route('Product.store') }}" method="POST" enctype="multipart/form-data">
