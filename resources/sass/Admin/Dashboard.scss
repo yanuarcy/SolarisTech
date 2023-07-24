@@ -32,13 +32,22 @@ main {
 
 .nav-item {
     // background-color: aqua;
+    transition: 0.5s ease;
 
     &:hover {
-        background-color: gray;
+        background-color: rgb(91, 123, 143);
     }
 
     i {
         font-size: 24px;
+        margin-right: 5px;
+    }
+}
+
+.dropdown {
+    i {
+        font-size: 24px;
+        margin-left: 10px;
         margin-right: 5px;
     }
 }
