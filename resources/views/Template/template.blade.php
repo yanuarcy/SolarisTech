@@ -29,6 +29,7 @@ BgCustProfile
     {{-- @include('Layouts.nav') --}}
     <div id="app">
         @yield('Content')
+        @include('sweetalert::alert')
         @stack('scripts')
     </div>
 

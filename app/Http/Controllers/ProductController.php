@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $Tittle = 'SolarisTech - Product';
-
+        confirmDelete();
         return view('Admin.Stuff.ProdukDisplay', ['Tittle' => $Tittle]);
     }
 
@@ -123,7 +123,13 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $products = Product::find($id);
+        $products->delete();
+
+        // Alert::success('Deleted Successfully', 'Product Data Deleted Successfully.');
+        toast('Product Data Deleted Successfully','success');
+
+        return redirect()->route('Product.index');
     }
 
     public function getData(Request $request)
