@@ -18,7 +18,7 @@ class KategoriSeeder extends Seeder
                 'nm_kategori' => 'PC Packages',
             ],
             [
-                'nm_kategori' => 'Mmonitor',
+                'nm_kategori' => 'Monitor',
             ],
             [
                 'nm_kategori' => 'Accessories',
