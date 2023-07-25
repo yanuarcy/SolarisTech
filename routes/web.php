@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileCust;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,4 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
-
+Route::get('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
