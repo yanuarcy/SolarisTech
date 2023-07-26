@@ -90,16 +90,11 @@
                         <label class="form-label mt-4" for="Alamat">Alamat Pengiriman</label>
                         <textarea class="form-control w-75" placeholder="{{ Auth::user()->alamat }}" name="Alamat" id="Alamat" cols="30" rows="5"></textarea>
 
+
                         <h5 class="mt-4">Payment Method</h5>
                         <select class="form-select w-75" name="payment_method" id="payment_method">
-                            <option value="" disabled selected>Metode Pembayaran</option>
+                            <option value="" selected disabled>Metode Pembayaran</option>
                             <option value="BCA">BCA</option>
-                        <textarea class="form-control w-75" name="Alamat" id="Alamat" cols="30" rows="5"></textarea>
-
-                        <h5>Payment Method</h5>
-                        <select name="payment_method" id="payment_method">
-                            <option value="BCA">BCA</option>
-                            <option value="BRI">BRI</option>
                             <option value="BNI">BNI</option>
                             <option value="ShopeePay">ShopeePay</option>
                             <option value="DANA">DANA</option>
@@ -108,11 +103,8 @@
                             <span id="account_number"></span>
                         </div>
 
-                        <input type="submit" value="Bayar" class="btn btn-primary w-75 mt-5">
 
-                        <div class="row">
-                            <input type="submit" value="Bayar" class="btn btn-primary w-75 mt-5">
-                        </div>
+                        <input type="submit" value="Bayar" class="btn btn-primary w-75 mt-5">
                     </form>
                 </div>
             </div>
@@ -122,33 +114,35 @@
 @endsection
 
 @push('scripts')
-<script>
+    <script>
 
-    const accountNumbers = {
-        BCA: "No Rekening : 0182400261",
-        BNI: "No Rekening : 21522689256",
-        DANA: "No Rekening : 082257508081",
-        ShopeePay: "No Rekening : 081336377045",
-    };
-    // Event listener ketika opsi "BCA" dipilih
-    document.getElementById("payment_method").addEventListener("change", function () {
-        var bcaAccountDetails = document.getElementById("bca_account_details");
-        var accountNumberSpan = document.getElementById("account_number");
-        if (accountNumbers[this.value]) {
-            bcaAccountDetails.classList.add("w-75");
-            bcaAccountDetails.style.border = "1px solid #ccc";
-            bcaAccountDetails.style.borderTop = "none";
-            bcaAccountDetails.style.backgroundColor = "#f9f9f9";
-            bcaAccountDetails.style.display = "block";
-            bcaAccountDetails.style.padding = "10px";
-            accountNumberSpan.textContent = accountNumbers[this.value];
-        }
+        // Data nomor rekening berdasarkan opsi yang dipilih
+        const accountNumbers = {
+            BCA: "No Rekening: 0182400261",
+            BNI: "0123456789",
+            ShopeePay: "082257508081",
+            DANA: "081336377045",
+        };
 
-        else {
-            bcaAccountDetails.style.display = "none";
-        }
-    });
-</script>
+        // Event listener ketika opsi dipilih
+        document.getElementById("payment_method").addEventListener("change", function () {
+            var bcaAccountDetails = document.getElementById("bca_account_details");
+            var accountNumberSpan = document.getElementById("account_number");
+            if (accountNumbers[this.value]) {
+                // Handling untuk BCA dan BNI
+                bcaAccountDetails.classList.add("w-75");
+                bcaAccountDetails.style.border = "1px solid #ccc";
+                bcaAccountDetails.style.borderTop = "none";
+                bcaAccountDetails.style.backgroundColor = "#f9f9f9";
+                bcaAccountDetails.style.display = "block";
+                bcaAccountDetails.style.padding = "10px";
+                // Tampilkan nomor rekening yang sesuai
+                accountNumberSpan.textContent = accountNumbers[this.value];
 
-
+            } else {
+                // Default handling untuk opsi lain
+                bcaAccountDetails.style.display = "none";
+            }
+        });
+    </script>
 @endpush
