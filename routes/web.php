@@ -49,7 +49,7 @@ Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk')
 Route::get('/Produk/{kategori}', [OurProductController::class, 'getKategori'])->name('GetKategori');
 
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
-Route::get('/CustProfile', [ProfileCust::class, 'index'])->name('CustProfile')->middleware('auth', 'cekrole:user');
+Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
 
 
 Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
