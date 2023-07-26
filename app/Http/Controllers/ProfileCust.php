@@ -8,7 +8,6 @@ class ProfileCust extends Controller
 {
     public function CustProfile() {
         $Tittle = 'Solaris -Tech';
-
         return view('app.ProfileCust', compact('Tittle'));
 
     }

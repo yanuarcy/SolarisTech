@@ -79,6 +79,7 @@
                 </div>
                 <div class="mainRight mt-4">
                     <form action="{{ route('processPayment') }}" method="POST">
+                    <form action="" method="POST">
                         @csrf
                         <label class="form-label" for="email">Email</label>
                         <input class="form-control w-75" type="email" value="{{ Auth::user()->email }}" name="email" placeholder="Email">
@@ -93,6 +94,12 @@
                         <select class="form-select w-75" name="payment_method" id="payment_method">
                             <option value="" disabled selected>Metode Pembayaran</option>
                             <option value="BCA">BCA</option>
+                        <textarea class="form-control w-75" name="Alamat" id="Alamat" cols="30" rows="5"></textarea>
+
+                        <h5>Payment Method</h5>
+                        <select name="payment_method" id="payment_method">
+                            <option value="BCA">BCA</option>
+                            <option value="BRI">BRI</option>
                             <option value="BNI">BNI</option>
                             <option value="ShopeePay">ShopeePay</option>
                             <option value="DANA">DANA</option>
@@ -102,6 +109,10 @@
                         </div>
 
                         <input type="submit" value="Bayar" class="btn btn-primary w-75 mt-5">
+
+                        <div class="row">
+                            <input type="submit" value="Bayar" class="btn btn-primary w-75 mt-5">
+                        </div>
                     </form>
                 </div>
             </div>

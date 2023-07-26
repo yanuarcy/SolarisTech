@@ -65,7 +65,6 @@
                         <td colspan="5" style="text-align: right">
                             <a href="{{ route('GetProduk') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
                             <a href="{{ route('Payment') }}" class="btn btn-success"> <i class="fa fa-arrow-left"></i> Checkout</a>
-                            {{-- <button class="btn btn-success"><i class="fa fa-money"></i> Checkout</button> --}}
                         </td>
                     </tr>
                 </tfoot>

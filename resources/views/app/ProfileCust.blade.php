@@ -35,6 +35,8 @@
                 <div class="row">
                     <div class="col-md-12 d-grid">
                         <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Back</a>
+                        <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg mt-3"><i
+                                class="bi-arrow-left-circle me-2"></i> Back</a>
                     </div>
                 </div>
             </div>
