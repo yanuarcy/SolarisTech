@@ -28,20 +28,22 @@ class CartController extends Controller
             if (isset($cart[$request->id])) {
                 $cart[$request->id]["quantity"] = $request->quantity;
                 Cache::put($cartKey, $cart);
-                session()->flash('success', 'Cart successfully updated!');
+                // session()->flash('success', 'Cart successfully updated!');
             }
         }
     }
 
     public function remove(Request $request)
     {
-        if($request->id) {
-            $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
+        if ($request->id) {
+            $cartKey = auth()->check() ? 'cart_' . auth()->user()->id : 'cart';
+            $cart = Cache::get($cartKey, []);
+
+            if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
-                session()->put('cart', $cart);
+                Cache::put($cartKey, $cart);
+                // session()->flash('success', 'Product successfully removed!');
             }
-            session()->flash('success', 'Product successfully removed!');
         }
     }
 }

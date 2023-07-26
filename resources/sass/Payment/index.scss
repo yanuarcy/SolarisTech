@@ -1,0 +1,40 @@
+.Box {
+    padding: 5%;
+}
+
+.headerLeft {
+    a {
+        color: black;
+        text-decoration: none;
+        transition: 0.5s ease;
+
+        &:hover {
+            color: rgb(231, 165, 95);
+        }
+    }
+}
+
+.account-details {
+    position: relative;
+    opacity: 0;
+    // border: none;
+    // border-top: 1px solid transparent;
+    margin-top: -6.5%;
+    border-radius: 0;
+    animation: slide-down 0.3s ease-out forwards;
+}
+
+@keyframes slide-down {
+    to {
+        opacity: 1;
+        transform: translateY(20px);
+    }
+}
+
+// .mainLeft {
+//     .ListCart {
+//         display: inline-block;
+//     }
+// }
+
+

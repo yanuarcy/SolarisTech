@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OurProductController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,6 @@ Route::get('/', [HomeController::class, 'index'])->name('Home');
 Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
 Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile')->middleware('auth', 'cekrole:admin');
 
-
-
-
 route::fallback(function () {
     return view('app.404');
 });
@@ -43,13 +41,9 @@ Route::resource('/Dashboard/Product', ProductController::class);
 
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate']);
+
 Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk');
-
 Route::get('/Produk/{kategori}', [OurProductController::class, 'getKategori'])->name('GetKategori');
-
-Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
-Route::get('/CustProfile', [ProfileCust::class, 'index'])->name('CustProfile')->middleware('auth', 'cekrole:user');
-
 
 Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
 
@@ -57,4 +51,12 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
+
+Route::get('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
+Route::get('/Payment/uploadProof', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
+// Route::get('/Payment/UploadProof', [PaymentController::class, 'Proof'])->name('Payment.Proof')->middleware('auth');
+Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
+Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
+Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');
+
 
