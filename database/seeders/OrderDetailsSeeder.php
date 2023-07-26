@@ -22,6 +22,22 @@ class OrderDetailsSeeder extends Seeder
                 'jml_barang' => 2,
                 'total_harga' => 18600000
             ],
+            [
+                'order_id' => 2,
+                'product_id' => 3,
+                'nm_member' => 'admin',
+                'nm_barang' => 'COLORFUL SL300 128GB',
+                'jml_barang' => 1,
+                'total_harga' => 300000
+            ],
+            [
+                'order_id' => 2,
+                'product_id' => 7,
+                'nm_member' => 'admin',
+                'nm_barang' => 'LG LED 22″ 22MK600',
+                'jml_barang' => 3,
+                'total_harga' => 5400000
+            ]
         ]);
     }
 }

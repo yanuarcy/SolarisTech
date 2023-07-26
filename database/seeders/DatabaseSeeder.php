@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             ProductSeeder::class,
             OrderSeeder::class,
-            OrderDetailsSeeder::class
+            OrderDetailsSeeder::class,
+            MethodePayment::class,
+            TransaksiSeeder::class
         ]);
     }
 }
