@@ -21,16 +21,21 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="@if ($RouteSaatIni == 'CustProfile')
-BgCustProfile
-@endif">
-<body class="@if($RouteSaatIni == 'CustProfile') BgCustProfile @endif">
+<body class="
+    @if ( $RouteSaatIni == 'CustProfile' ) BgCustProfile
+
+    @elseif ( $RouteSaatIni == 'AboutUs' ) BgAboutUs
+
+    @endif
+">
 
     {{-- @include('Layouts.nav') --}}
     <div id="app">
+
         @yield('Content')
         @include('sweetalert::alert')
         @stack('scripts')
+
     </div>
 
     @vite('resources/js/app.js')

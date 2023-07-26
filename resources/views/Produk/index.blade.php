@@ -42,6 +42,7 @@
             @foreach ($products as $product)
                 <div class="card">
                     @if ($product->photo)
+                        {{-- <img src="resources/images/VGA3.jpg" alt=""> --}}
                         <img src="{{ Vite::asset('resources/images/' . $product->photo) }}" class="card-img-top"
                             alt="{{ $product->nm_produk }}">
                     @else

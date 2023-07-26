@@ -1,32 +1,9 @@
 @php
     $RouteSaatIni = Route::currentRouteName();
 
-    // $cart = session('cart_', []);
-    // $cart = count(session('cart_' . auth()->user()->id, []));
-    // session()->forget('cart');
-    // $totalProducts = $cart;
-
-    // $userId = auth()->user()->id ?? 'guest';
-    // $cart = Cache::get('cart_' . $userId, []);
-    // $totalProducts = count($cart);
-
     $userId = auth()->check() ? auth()->user()->id : 'guest';
     $cartKey = $userId !== 'guest' ? 'cart_' . $userId : 'cart';
     $cart = Cache::get($cartKey, []);
-
-    // if ($userId === 'guest') {
-    //     // Set masa berlaku cache untuk pengguna tamu (belum login)
-    //     $expiration = now()->addMinutes(60); // Atur sesuai kebutuhan Anda
-    //     $cart = Cache::remember($cartKey, $expiration, function () {
-    //         return [];
-    //     });
-    // } else {
-    //     // Set masa berlaku cache untuk pengguna yang telah login
-    //     $expiration = now()->addDays(7); // Atur sesuai kebutuhan Anda
-    //     $cart = Cache::remember($cartKey, $expiration, function () {
-    //         return [];
-    //     });
-    // }
 
     if ($userId === 'guest' && empty($cart)) {
         $cart = [];
@@ -51,7 +28,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link aktif" href="">
+                    <a class="nav-link aktif" href="{{ route('AboutUs') }}">
                         About
                     </a>
                 </li>
@@ -76,9 +53,13 @@
                     </form>
                 @endif
 
-                <li class="nav-item Cart @if ($RouteSaatIni == 'Home')
-                    JarakKiriCart
-                @endif">
+                <li class="nav-item Cart
+                    @if ($RouteSaatIni == 'Home') JarakKiriCart
+
+                    @elseif ($RouteSaatIni == 'AboutUs') JarakKiriCart
+
+                    @endif
+                ">
 
                     <div class="dropdown">
                         <a data-bs-toggle="dropdown" class="nav-link" aria-current="page" href=""><i class="bi bi-cart3"></i> Cart
@@ -91,6 +72,7 @@
                             </span>
                         </a>
 
+                        {{-- List Dropdown Cart --}}
                         <div class="dropdown-menu">
                             <div class="row total-header-section">
                                 @php
@@ -99,9 +81,9 @@
                                     // $cart = Cache::get('cart_' . auth()->user()->id, []);
 
                                     if (auth()->check()) {
-                                        $cart = Cache::get('cart_' . auth()->user()->id, []);
+                                        $cart = Cache::get('cart_' . auth()->user()->id, []); // ini Sudah Login cart_7
                                     } else {
-                                        $cart = Cache::get('cart', []);
+                                        $cart = Cache::get('cart', []); // ini Belum Login cart
                                     }
 
                                 @endphp
