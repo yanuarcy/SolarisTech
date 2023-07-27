@@ -3,6 +3,22 @@
 @vite('resources/sass/Payment/index.scss')
 
 @section('Content')
+
+    {{-- @if(empty($cart))
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Keranjang Belanja Kosong',
+                text: 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.',
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+                allowOutsideClick: false
+            }).then((result) => {
+                window.history.back();
+            });
+        </script>
+    @endif --}}
+
     <div class="container Box">
         <div class="row justify-content-center">
 
@@ -56,16 +72,16 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="row mt-5">
+                            <div class="col">
+                                <h5>Subtotal</h5>
+                            </div>
+                            <div class="col">
+                                <h5 class="text-md-end">Rp {{ number_format($total, 0, ',', '.') }}</h5>
+                            </div>
+                        </div>
                     @endif
 
-                    <div class="row mt-5">
-                        <div class="col">
-                            <h5>Subtotal</h5>
-                        </div>
-                        <div class="col">
-                            <h5 class="text-md-end">Rp {{ number_format($total, 0, ',', '.') }}</h5>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -79,7 +95,7 @@
                 </div>
                 <div class="mainRight mt-4">
                     <form action="{{ route('processPayment') }}" method="POST">
-                    <form action="" method="POST">
+
                         @csrf
                         <label class="form-label" for="email">Email</label>
                         <input class="form-control w-75" type="email" value="{{ Auth::user()->email }}" name="email" placeholder="Email">
@@ -88,12 +104,12 @@
                         <input class="form-control w-75" type="text" value="{{ Auth::user()->telepone }}" name="telephone" placeholder="Telephone">
 
                         <label class="form-label mt-4" for="Alamat">Alamat Pengiriman</label>
-                        <textarea class="form-control w-75" placeholder="{{ Auth::user()->alamat }}" name="Alamat" id="Alamat" cols="30" rows="5"></textarea>
+                        <textarea class="form-control w-75" placeholder="{{ Auth::user()->alamat }}" name="AlamatPengiriman" id="Alamat" cols="30" rows="5"></textarea>
 
 
                         <h5 class="mt-4">Payment Method</h5>
                         <select class="form-select w-75" name="payment_method" id="payment_method">
-                            <option value="" selected disabled>Metode Pembayaran</option>
+                            <option value="" selected disabled hidden>Metode Pembayaran</option>
                             <option value="BCA">BCA</option>
                             <option value="BNI">BNI</option>
                             <option value="ShopeePay">ShopeePay</option>

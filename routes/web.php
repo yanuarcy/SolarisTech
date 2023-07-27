@@ -62,4 +62,5 @@ Route::get('/Payment/uploadProof', [PaymentController::class, 'Pay'])->name('Pay
 Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
 Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
 Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');
+Route::post('/Payment/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof')->middleware('auth');
 

@@ -11,6 +11,15 @@ class Orderdetails extends Model
 
     protected $table = 'orderdetails';
 
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'nm_member',
+        'nm_barang',
+        'jml_barang',
+        'total_harga'
+    ];
+
     public function product(){
         return $this->belongsTo(Product::class);
     }

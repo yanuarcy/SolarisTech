@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('methodpay_id')->constrained();
             $table->string('kode_pemesanan');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('nm_member');
             $table->string('telephone');
             $table->string('alamat_pengiriman')->nullable();
