@@ -73,6 +73,11 @@ class PaymentController extends Controller
         $total = 0;
         $cart = [];
 
+        if (empty($cart)) {
+            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
+            return redirect()->back();
+        }
+
         if (auth()->check()) {
             $cart = Cache::get('cart_' . auth()->user()->id, []);
         } else {
@@ -129,6 +134,8 @@ class PaymentController extends Controller
         } else {
             Cache::forget('cart');
         }
+
+
 
         // Alihkan ke halaman berikutnya dengan data yang diperlukan
         return redirect()->route('showPaymentInfo')->with('payment_method', $paymentMethod)->with('orderCode', $orderCode);
@@ -195,9 +202,11 @@ class PaymentController extends Controller
         // Cari transaksi berdasarkan kode pemesanan
         $transaksi = Transaksi::where('kode_pemesanan', $kodePemesanan)->first();
 
-
-        // Simpan file gambar yang diupload ke penyimpanan
-        // $imagePath = $request->file('PaymentProof')->store('uploads', 'public');
+        // Periksa apakah transaksi dengan kode pemesanan tersebut ditemukan
+        if (!$transaksi) {
+            Alert::error('Oops....', 'Kode Pemesanan Anda belum terdaftar');
+            return redirect()->back();
+        }
 
         // Update kolom status_bayar menjadi 'sukses' dan simpan path gambar di kolom bukti_pembayaran
         $transaksi->status_bayar = 'sukses';
