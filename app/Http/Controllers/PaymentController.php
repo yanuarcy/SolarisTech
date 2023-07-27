@@ -51,10 +51,6 @@ class PaymentController extends Controller
 
     public function processPayment(Request $request)
     {
-        // if (empty($cart)) {
-        //     // Tambahkan pesan kesalahan ke dalam session
-        //     return redirect()->back()->with('error', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
-        // }
 
         // Proses penyimpanan data yang dikirimkan dari form
         // Misalnya simpan ke database
@@ -135,13 +131,13 @@ class PaymentController extends Controller
             Cache::forget('cart');
         }
 
-
+        if (empty($cart)) {
+            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
+            return redirect()->back();
+        }
 
         // Alihkan ke halaman berikutnya dengan data yang diperlukan
         return redirect()->route('showPaymentInfo')->with('payment_method', $paymentMethod)->with('orderCode', $orderCode);
-
-        // Redirect ke halaman selanjutnya dengan membawa data yang dipilih
-        // return redirect()->route('showPaymentInfo')->with('payment_method', $request->payment_method);
     }
 
     public function showPaymentInfo(Request $request)
@@ -155,16 +151,6 @@ class PaymentController extends Controller
 
         // Kode ini harus disesuaikan dengan cara Anda menyimpan data no rekening di database
         $accountNumber = $this->getAccountNumberByPaymentMethod($paymentMethod);
-
-        // if ($request->hasFile('photo')) {
-        //     $transaksiId = session('transaksi_id');
-        //     $transaksi = Transaksi::find($transaksiId);
-
-        //     if ($transaksi) {
-        //         $transaksi->status_bayar = 'sukses';
-        //         $transaksi->save();
-        //     }
-        // }
 
         return view('Payment.UploadProof', compact('paymentMethod', 'accountNumber', 'Tittle', 'orderCode'));
     }
@@ -193,8 +179,6 @@ class PaymentController extends Controller
             $extension = $image->getClientOriginalExtension();
             $imageName = 'Paymentproof_' . Str::random(10) . '.' . $extension;
             $image->move(resource_path('images/BuktiBayar'), $imageName);
-            // $image->storeAs('images', $imageName, 'resources');
-            // $image->move(public_path('resources/images'), $imageName);
         } else {
             $imageName = null;
         }
@@ -202,7 +186,9 @@ class PaymentController extends Controller
         // Cari transaksi berdasarkan kode pemesanan
         $transaksi = Transaksi::where('kode_pemesanan', $kodePemesanan)->first();
 
+
         // Periksa apakah transaksi dengan kode pemesanan tersebut ditemukan
+
         if (!$transaksi) {
             Alert::error('Oops....', 'Kode Pemesanan Anda belum terdaftar');
             return redirect()->back();
