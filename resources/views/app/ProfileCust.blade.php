@@ -33,10 +33,11 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-12 d-grid">
-                        <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Back</a>
-                        <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg mt-3"><i
-                                class="bi-arrow-left-circle me-2"></i> Back</a>
+                    <div class="col-md-6">
+                        <a href="{{ route('Home') }}" class="btn btn-outline-dark btn-lg w-100 mt-3"><i class="bi-arrow-left-circle me-2"></i> Back</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ route('HistoryOrder') }}" class="btn btn-primary btn-lg w-100 mt-3"> History Order</a>
                     </div>
                 </div>
             </div>

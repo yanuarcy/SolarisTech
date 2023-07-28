@@ -22,10 +22,14 @@ class PaymentController extends Controller
         return view('Payment.index', compact('Tittle'));
     }
 
-    public function Pay() {
+    public function Pay($id) {
         $Tittle = 'Solaris -Tech';
 
-        return view('Payment.UploadProof', compact('Tittle'));
+        $Transaksis = Transaksi::where('id', $id)->first();
+        $paymentMethod = $Transaksis->metode_pembayaran;
+        $accountNumber = $this->getAccountNumberByPaymentMethod($paymentMethod);
+
+        return view('Payment.UploadProof', compact('Tittle', 'paymentMethod', 'accountNumber'));
     }
 
     function generateRandomOrderCode($length = 8)
@@ -69,7 +73,6 @@ class PaymentController extends Controller
         $total = 0;
         $cart = [];
 
-
         if (auth()->check()) {
             $cart = Cache::get('cart_' . auth()->user()->id, []);
         } else {
@@ -97,8 +100,6 @@ class PaymentController extends Controller
                 $product->save();
             }
         }
-
-
 
         $methodPay = Methodpay::where('metode_pembayaran', $paymentMethod)->first();
         if (!$methodPay) {
@@ -183,9 +184,6 @@ class PaymentController extends Controller
 
         // Cari transaksi berdasarkan kode pemesanan
         $transaksi = Transaksi::where('kode_pemesanan', $kodePemesanan)->first();
-
-
-        // Periksa apakah transaksi dengan kode pemesanan tersebut ditemukan
 
         if (!$transaksi) {
             Alert::error('Oops....', 'Kode Pemesanan Anda belum terdaftar');
