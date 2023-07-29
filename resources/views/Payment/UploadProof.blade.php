@@ -13,7 +13,6 @@
                 <div class="row">
                     <div class="col">
                         <h1 class="">Payment Info</h1>
-                        <p>Kode pesanan Anda adalah: <span id="order-code">{{ $orderCode }}</span></p>
                         <p>Nama : {{ Auth::user()->name }}</p>
                         <p>Telepone : {{ Auth::user()->telepone }}</p>
                         <p>Alamat : {{ Auth::user()->alamat }}</p>

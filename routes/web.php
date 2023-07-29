@@ -26,7 +26,9 @@ use App\Http\Controllers\ProfileCust;
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
 Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
+Route::get('/CustProfile/HistoryOrder', [ProfileCust::class, 'HistoryOrder'])->name('HistoryOrder')->middleware('auth', 'cekrole:user');
 Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile')->middleware('auth', 'cekrole:admin');
+Route::get('/Dashboard//AdminProfile/HistoryOrder', [ProfileCust::class, 'HistoryOrderAdmin'])->name('HistoryOrderAdmin')->middleware('auth', 'cekrole:admin');
 
 route::fallback(function () {
     return view('app.404');
@@ -57,7 +59,7 @@ Route::patch('update-cart', [CartController::class, 'update'])->name('update_car
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
 
 Route::get('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
-Route::get('/Payment/uploadProof', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
+Route::get('/Payment/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
 // Route::get('/Payment/UploadProof', [PaymentController::class, 'Proof'])->name('Payment.Proof')->middleware('auth');
 Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
 Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
