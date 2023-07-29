@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
@@ -13,6 +14,7 @@ class KategoriController extends Controller
     public function index()
     {
         $Tittle = 'SolarisTech - Kategori';
+        confirmDelete();
 
         return view('Admin.Kategori.KategoriDisplay', compact('Tittle'));
     }
@@ -22,7 +24,9 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        $Tittle = 'Solaris - Tech';
+
+        return view('Admin.Kategori.CreateKategori', compact('Tittle'));
     }
 
     /**
@@ -30,7 +34,23 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nm_kategori' => 'required'
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $Kategori = New Kategori;
+        $Kategori->nm_kategori = $request->nm_kategori;
+        $Kategori->save();
+
+        return redirect()->route('Kategori.index');
     }
 
     /**
@@ -62,7 +82,13 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $Kategori = Kategori::find($id);
+        $Kategori->delete();
+
+        // Alert::success('Deleted Successfully', 'Product Data Deleted Successfully.');
+        toast('Product Data Deleted Successfully','success');
+
+        return redirect()->route('Kategori.index');
     }
 
     public function getData(Request $request)
@@ -73,8 +99,8 @@ class KategoriController extends Controller
         if ($request->ajax()) {
             return datatables()->of($Kategoris)
                 ->addIndexColumn()
-                ->addColumn('actions', function($products) {
-                    return view('Layouts.actions', compact('products'));
+                ->addColumn('actions', function($Kategoris) {
+                    return view('Layouts.actions', compact('Kategoris'));
                 })
                 ->toJson();
         }

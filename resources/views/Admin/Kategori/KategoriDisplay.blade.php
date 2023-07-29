@@ -6,6 +6,11 @@
             <div class="col-lg-9 col-xl-10">
                 <h4 class="mb-3">{{ $Tittle }}</h4>
             </div>
+            <div class="col-lg-3 col-xl-2">
+                <div class="d-grid gap-2">
+                    <a href="{{ route('Kategori.create') }}" class="btn btn-primary">Add Category</a>
+                </div>
+            </div>
         </div>
         <hr>
         <div class="table-responsive border p-3 rounded-3">
@@ -57,7 +62,7 @@
                     { data: "nm_kategori", name: "nm_kategori"},
                     { data: "actions", name: "actions", orderable: false, searchable: false }
                 ],
-                order: [[0, "desc"]],
+                order: [[0, "asc"]],
                 lengthMenu: [
                     [5, 10, 25, 50, 100, -1],
                     [5, 10, 25, 50, 100, "All"],

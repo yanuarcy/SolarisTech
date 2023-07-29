@@ -1,4 +1,4 @@
-@extends('Admin.Dashboard')
+@extends('Admin.Sidebar')
 
 @vite([
     'resources/sass/Admin/Stuff/create.scss',
