@@ -50,7 +50,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="" class="btn btn-warning"><i class="bi bi-eye"></i></a>
-                    <a href="" class="btn btn-primary"><i class="bi bi-cart3"></i></a>
+                    <a href="{{ route('addTo-Cart', $product->id) }}" class="btn btn-primary"><i class="bi bi-cart3"></i></a>
                 </div>
             </div>
         @endforeach

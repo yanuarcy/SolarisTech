@@ -60,7 +60,6 @@ Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remo
 
 Route::get('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
 Route::get('/Payment/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
-// Route::get('/Payment/UploadProof', [PaymentController::class, 'Proof'])->name('Payment.Proof')->middleware('auth');
 Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
 Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
 Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');

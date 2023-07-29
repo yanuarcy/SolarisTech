@@ -73,6 +73,6 @@ class OurProductController extends Controller
 
 
 
-        return redirect()->route('GetProduk');
+        return redirect()->back();
     }
 }
