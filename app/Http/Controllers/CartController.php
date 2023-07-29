@@ -9,7 +9,9 @@ class CartController extends Controller
 {
     public function cart()
     {
-        return view('Cart.index');
+        $Tittle = 'Solaris - Tech';
+
+        return view('Cart.index', compact('Tittle'));
     }
 
     public function update(Request $request)

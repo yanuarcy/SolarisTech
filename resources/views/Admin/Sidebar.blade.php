@@ -4,7 +4,7 @@
 
 @extends('Template.template')
 
-@vite('resources/sass/Admin/Dashboard.scss')
+@vite('resources/sass/Admin/Sidebar.scss')
 @section('Content')
     <main>
         {{-- <h1 class="visually-hidden">Sidebars examples</h1> --}}
@@ -24,13 +24,13 @@
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{ route('Member.index') }}" class="nav-link text-white">
                         <i class="bi bi-person-circle"></i>    Member
                     </a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="{{ route('Product.index')}}" class="nav-link text-white @if ($RouteSaatIni == 'Product.index')
+                    <a href="{{ route('Product.index') }}" class="nav-link text-white @if ($RouteSaatIni == 'Product.index')
                         active
                     @endif">
                         <i class="bi bi-grid"></i>    Products
@@ -38,7 +38,7 @@
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{ route('Kategori.index') }}" class="nav-link text-white">
                         <i class="bi bi-bookmarks-fill"></i>    Category
                     </a>
                 </li>
@@ -46,14 +46,20 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{ route('Order') }}" class="nav-link text-white">
                         <i class="bi bi-table"></i>    Order
                     </a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{ route('OrderDetails') }}" class="nav-link text-white">
                         <i class="bi bi-ui-checks"></i> Order Details
+                    </a>
+                </li>
+                <hr>
+                <li class="nav-item">
+                    <a href="{{ route('Transaksi') }}" class="nav-link text-white">
+                        <i class="bi bi-wallet"></i> Transaksi
                     </a>
                 </li>
 
@@ -66,7 +72,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li>
-                    <a class="dropdown-item" href="{{ route('Admin.create') }}">New Account</a>
+                    <a class="dropdown-item" href="{{ route('Member.create') }}">New Account</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('AdminProfile') }}">My Profile</a>

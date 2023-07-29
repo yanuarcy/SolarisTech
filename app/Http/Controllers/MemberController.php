@@ -6,14 +6,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class AdminController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $Tittle = 'SolarisTech - Member';
+
+        return view('Admin.Member.MemberDisplay', compact('Tittle'));
     }
 
     /**
@@ -94,5 +96,17 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getData(Request $request)
+    {
+        $Members = User::all();
+
+
+        if ($request->ajax()) {
+            return datatables()->of($Members)
+                ->addIndexColumn()
+                ->toJson();
+        }
     }
 }

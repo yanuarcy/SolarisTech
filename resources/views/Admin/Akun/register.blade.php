@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="form">
                     <h2>Register Form Admin</h2>
-                    <form action="{{ route('Admin.store') }}" method="POST">
+                    <form action="{{ route('Member.store') }}" method="POST">
                         @csrf
 
                         <div class="inputBox">

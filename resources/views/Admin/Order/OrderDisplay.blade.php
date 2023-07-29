@@ -6,27 +6,18 @@
             <div class="col-lg-9 col-xl-10">
                 <h4 class="mb-3">{{ $Tittle }}</h4>
             </div>
-            <div class="col-lg-3 col-xl-2">
-                <div class="d-grid gap-2">
-                    <a href="{{ route('Product.create') }}" class="btn btn-primary">Add Product</a>
-                </div>
-            </div>
         </div>
         <hr>
         <div class="table-responsive border p-3 rounded-3">
-            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="ProductTable">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="OrderTable">
                 <thead>
                     <tr>
                         <th align="center">ID</th>
-                        <th>No. </th>
-                        <th>Kategori</th>
-                        <th>Member</th>
-                        <th style="width: 15%">Nama Produk</th>
-                        <th style="width: 15%">Harga Produk</th>
-                        <th>Stok</th>
-                        <th>Deskripsi Produk</th>
-                        <th>Foto Produk</th>
-                        <th>Actions</th>
+                        <th style="width: 1%">No. </th>
+                        <th class="text-center">Tanggal Order</th>
+                        <th class="text-center">Nama Member</th>
+                        <th class="text-center">Total Order</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 {{-- <tbody>
@@ -57,37 +48,23 @@
 @push('scripts')
     <script type="module">
         $(document).ready(function() {
-            $("#ProductTable").DataTable({
+            $("#OrderTable").DataTable({
                 serverSide: true,
                 processing: true,
-                ajax: "/getProduct",
+                ajax: "/getOrder",
                 columns: [
 
                     { data: "id", name: "id", visible: false },
                     { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false, searchable: false },
-                    { data: "kategori.nm_kategori", name: "kategori.nm_kategori"},
+                    { data: "created_at", name: "created_at"},
                     { data: "user.name", name: "user.name"},
-                    { data: "nm_produk", name: "nm_produk" },
-                    { data: "hg_produk", name: "hg_produk" },
-                    { data: "stok", name: "stok" },
-                    { data: "desc_produk", name: "desc_produk" },
-                    {
-                        data: "photo",
-                        name: "photo",
-                        render: function (data, type, row) {
-                            if (data) {
-                                return '<img src="' + "{{ Vite::asset('resources/images/') }}" + data + '" alt="' + row.nm_produk + '" width="100">';
-                            } else {
-                                return 'Gambar tidak tersedia';
-                            }
-                        },
-                    },
-                    { data: "actions", name: "actions", orderable: false, searchable: false },
+                    { data: "total_harga", name: "total_harga"},
+                    { data: "actions", name: "actions", orderable: false, searchable: false }
                 ],
                 order: [[0, "desc"]],
                 lengthMenu: [
-                    [5, 10, 25, 50, 100, -1],
-                    [5, 10, 25, 50, 100, "All"],
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"],
                 ],
             });
 

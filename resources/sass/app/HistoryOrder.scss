@@ -1,0 +1,19 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Ganti 10px sesuai kebutuhan jarak vertikal antar baris */
+}
+
+td, th {
+    padding: 10px; /* Ganti 10px sesuai kebutuhan jarak horizontal antar sel */
+}
+
+
+th.kodePemesanan,
+td.kodePemesanan {
+        width: 13%;
+}
+
+th.jmlTransaksi,
+td.jmlTransaksi {
+        width: 13%;
+    }

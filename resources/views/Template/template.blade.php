@@ -14,17 +14,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $Tittle }}</title>
     {{-- <title></title> --}}
     @vite('resources/sass/app.scss')
     {{-- @vite('resources/sass/nav.scss') --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 </head>
 <body class="
     @if ( $RouteSaatIni == 'CustProfile' ) BgCustProfile
 
     @elseif ( $RouteSaatIni == 'AboutUs' ) BgAboutUs
+
+    @elseif ( $RouteSaatIni == 'HistoryOrder' ) BgCustProfile
 
     @endif
 ">

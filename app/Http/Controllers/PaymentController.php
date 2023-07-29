@@ -22,10 +22,15 @@ class PaymentController extends Controller
         return view('Payment.index', compact('Tittle'));
     }
 
-    public function Pay() {
+    public function Pay($id) {
         $Tittle = 'Solaris -Tech';
 
-        return view('Payment.UploadProof', compact('Tittle'));
+        // $email = Auth::user()->email;
+        $Transaksis = Transaksi::where('id', $id)->first();
+        $paymentMethod = $Transaksis->metode_pembayaran;
+        $accountNumber = $this->getAccountNumberByPaymentMethod($paymentMethod);
+
+        return view('Payment.UploadProof', compact('Tittle', 'paymentMethod', 'accountNumber'));
     }
 
     function generateRandomOrderCode($length = 8)
@@ -69,10 +74,6 @@ class PaymentController extends Controller
         $total = 0;
         $cart = [];
 
-        if (empty($cart)) {
-            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
-            return redirect()->back();
-        }
 
         if (auth()->check()) {
             $cart = Cache::get('cart_' . auth()->user()->id, []);
@@ -195,7 +196,7 @@ class PaymentController extends Controller
         }
 
         // Update kolom status_bayar menjadi 'sukses' dan simpan path gambar di kolom bukti_pembayaran
-        $transaksi->status_bayar = 'sukses';
+        $transaksi->status_bayar = 'Menunggu Konfirmasi';
         $transaksi->photo = $imageName;
         $transaksi->save();
 
@@ -218,5 +219,13 @@ class PaymentController extends Controller
             default:
                 return 'No account number available';
         }
+    }
+
+    public function updateStatus($id) {
+        $transaksi = Transaksi::find($id);
+        $transaksi->status_bayar = 'Sukses';
+        $transaksi->save();
+
+        return redirect()->back()->with('success', 'Status transaksi berhasil diperbarui.');
     }
 }

@@ -9,6 +9,6 @@ class DashboardController extends Controller
     public function index(){
         $Tittle = 'SolarisTech - Dashboard';
 
-        return view('Admin.Dashboard', compact('Tittle'));
+        return view('Admin.Dashboard.DashboardDisplay', compact('Tittle'));
     }
 }
