@@ -50,6 +50,7 @@
                                             @if ($Transaksi->status_bayar === 'Menunggu Konfirmasi')
                                                 {{ $Transaksi->photo }}
                                             @elseif ($Transaksi->status_bayar === 'Sukses' || $Transaksi->status_bayar === 'sukses')
+                                            @if ($Transaksi->status_bayar === 'sukses')
                                                 {{ $Transaksi->photo }}
                                             @elseif ($Transaksi->status_bayar === 'belum bayar')
                                                 <a href="{{ route('Pay', ['id' => $Transaksi->id]) }}" class="btn btn-primary">Pay</a>

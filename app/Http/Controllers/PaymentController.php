@@ -24,7 +24,6 @@ class PaymentController extends Controller
 
     public function Pay($id) {
         $Tittle = 'Solaris -Tech';
-
         // $email = Auth::user()->email;
         $Transaksis = Transaksi::where('id', $id)->first();
         $paymentMethod = $Transaksis->metode_pembayaran;
@@ -186,9 +185,6 @@ class PaymentController extends Controller
 
         // Cari transaksi berdasarkan kode pemesanan
         $transaksi = Transaksi::where('kode_pemesanan', $kodePemesanan)->first();
-
-
-        // Periksa apakah transaksi dengan kode pemesanan tersebut ditemukan
 
         if (!$transaksi) {
             Alert::error('Oops....', 'Kode Pemesanan Anda belum terdaftar');
