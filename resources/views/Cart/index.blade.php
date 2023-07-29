@@ -64,7 +64,7 @@
                     <tr>
                         <td colspan="5" style="text-align: right">
                             <a href="{{ route('GetProduk') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
-                            <a href="{{ route('Payment') }}" class="btn btn-success" onclick="handlePaymentClick(event)"> <i class="fa fa-arrow-left"></i> Checkout</a>
+                            <a href="{{ route('Payment') }}" class="btn btn-success" onclick="handlePaymentClick(event)">Checkout <i class="fa fa-arrow-right"></i></a>
                         </td>
                     </tr>
                 </tfoot>
