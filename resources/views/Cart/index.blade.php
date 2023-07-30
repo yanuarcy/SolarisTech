@@ -50,8 +50,10 @@
                                     $subharga = $details['hg_produk'] * $details['quantity']
                                 @endphp
                                 <td data-th="Subtotal" class="text-center">Rp {{ number_format($subharga, 0, ',', '.') }}</td>
+
+
                                 <td class="actions" data-th="">
-                                    <button class="btn btn-danger btn-sm cart_remove"><i class="fa fa-trash-o"></i> Delete</button>
+                                    <button type="submit" class="btn btn-outline-dark btn-sm me-2 cart_remove" data-name="{{ $details['nm_produk'] }}"><i class="bi-trash"></i> Delete</button>
                                 </td>
                             </tr>
                         @endforeach
