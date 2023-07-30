@@ -73,7 +73,7 @@ Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remo
 Route::post('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
 Route::get('/Payment/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
 Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
-Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
+Route::post('/Payment/proccess', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
 Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');
 Route::post('/Payment/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof')->middleware('auth');
 

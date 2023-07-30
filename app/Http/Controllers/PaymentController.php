@@ -150,6 +150,8 @@ class PaymentController extends Controller
             return redirect()->back();
         }
 
+        toast('Order Successfully, Processing Now','success');
+
         // Alihkan ke halaman berikutnya dengan data yang diperlukan
         return redirect()->route('showPaymentInfo')->with('payment_method', $paymentMethod)->with('orderCode', $orderCode);
     }
@@ -178,7 +180,7 @@ class PaymentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'kd_pemesanan' => 'required',
-            'PaymentProof' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'PaymentProof' => 'required',
         ], $message);
 
         if ($validator->fails()) {
@@ -210,7 +212,8 @@ class PaymentController extends Controller
         $transaksi->photo = $imageName;
         $transaksi->save();
 
-        return redirect()->route('Home')->with('success', 'Bukti pembayaran berhasil diunggah. Pembayaran Anda telah diverifikasi.');
+        Alert::success('Success', 'Bukti pembayaran Anda berhasil dikirim!');
+        return redirect()->route('Home');
     }
 
     // Metode ini harus disesuaikan dengan cara Anda mengambil data no rekening dari database

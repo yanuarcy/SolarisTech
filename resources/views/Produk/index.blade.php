@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-footer">
                         <a href="" class="btn btn-warning"><i class="bi bi-eye"></i></a>
-                        <a href="{{ route('addTo-Cart', $product->id) }}" class="btn btn-primary">
+                        <a href="{{ route('addTo-Cart', $product->id) }}" class="btn btn-primary addToCartBtn">
                             <i class="bi bi-cart3"></i>
                         </a>
                         {{-- <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
@@ -66,3 +66,33 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToCartBtns = document.querySelectorAll('.addToCartBtn');
+
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const productId = this.getAttribute('href').split('/').pop();
+
+                    // Tampilkan SweetAlert untuk konfirmasi
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Tambah ke Keranjang',
+                        text: 'Apakah Anda yakin ingin menambahkan produk ini ke dalam keranjang?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, tambahkan',
+                        cancelButtonText: 'Batal',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Lanjutkan ke halaman penambahan ke keranjang (misal: addToCart function)
+                            window.location.href = "/add-to-cart/" + productId;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+@endpush

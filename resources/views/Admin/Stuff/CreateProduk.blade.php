@@ -44,14 +44,14 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="harga_produk" class="form-label">Harga Produk</label>
-                            <input class="form-control @error('harga_produk') is-invalid @enderror" type="text" name="harga_produk" id="harga_produk" value="{{ old('harga_produk') }}" placeholder="Masukkan Harga Produk">
+                            <input class="form-control @error('harga_produk') is-invalid @enderror" type="text" name="harga_produk" id="harga_produk" value="Rp {{ old('harga_produk') }}" placeholder="Masukkan Harga Produk">
                                 @error('harga_produk')
                             <div class="invalid-feedback"></div>
                                 @enderror
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="desc_produk" class="form-label">Deskripsi Produk</label>
-                            <textarea class="form-label" name="desc_produk" id="desc_produk" cols="50" rows="5"></textarea>
+                            <textarea class="form-control" name="desc_produk" id="desc_produk" cols="50" rows="5"></textarea>
                             @error('desc_produk')
                                 <div class="text-danger"><small></small></div>
                             @enderror
