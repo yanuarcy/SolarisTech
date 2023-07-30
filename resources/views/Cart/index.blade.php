@@ -1,96 +1,116 @@
 @extends('Template.template')
 
 @vite('resources/js/Cart/index.js')
+@vite('resources/sass/Cart/index.scss')
 @section('Content')
 
-    <div class="container">
-        <div class="row">
-            <table id="cart" class="table table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th style="width:50%">Product</th>
-                        <th style="width:10%">Price</th>
-                        <th style="width:8%">Quantity</th>
-                        <th style="width:22%" class="text-center">Subtotal</th>
-                        <th style="width:10%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $total = 0;
-                        $cart = [];
-                        // $cart = Cache::get('cart_' . auth()->user()->id, []);
+    <section id="blog-home" class="container mt-5">
+        <h2 class="font-weight-bold pt-5">Shopping Cart</h2>
+        <hr>
+    </section>
 
-                        if (auth()->check()) {
-                            $cart = Cache::get('cart_' . auth()->user()->id, []);
-                        } else {
-                            $cart = Cache::get('cart', []);
+    <section id="cart-container" class="container my-5">
+        <table style="width: 100%">
+            <thead>
+                <tr>
+                    <td>Images</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $total = 0;
+                    $cart = [];
+                    // $cart = Cache::get('cart_' . auth()->user()->id, []);
+
+                    if (auth()->check()) {
+                        $cart = Cache::get('cart_' . auth()->user()->id, []);
+                    } else {
+                        $cart = Cache::get('cart', []);
+                    }
+                @endphp
+                @if (!empty($cart))
+                    @foreach ($cart as $id => $details )
+                        @php $total += $details['hg_produk'] * $details['quantity'] @endphp
+                        <tr data-id="{{ $id }}">
+                            <td>
+                                <div class="hidden-xs"><img src="{{ Vite::asset('resources/images') }}/{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></div>
+                            </td>
+                            <td>
+                                <h5>{{ $details['nm_produk'] }}</h5>
+                            </td>
+                            @php
+                                $harga = $details['hg_produk']
+                            @endphp
+                            <td>
+                                <h5>Rp {{ number_format($harga, 0, ',', '.') }}</h5>
+                            </td>
+                            <td>
+                                <input type="number" value="{{ $details['quantity'] }}" class="form-control mx-auto w-25 quantity cart_update" min="1" />
+                            </td>
+                            @php
+                                $subharga = $details['hg_produk'] * $details['quantity']
+                            @endphp
+                            <td>
+                                <h5>Rp {{ number_format($subharga, 0, ',', '.') }}</h5>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm cart_remove"><i class="bi bi-trash3 text-white"></i></button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-bottom" class="container">
+        <div class="row">
+            <div class="coupon col-lg-6 col-md-6 col-12 mb-4">
+                <div>
+                    @php
+                        $TotalItem = 0;
+                        foreach ($cart as $product) {
+                            $TotalItem += $product['quantity'];
                         }
                     @endphp
-                    @if(!empty($cart))
-                        @foreach($cart as $id => $details)
-                            @php $total += $details['hg_produk'] * $details['quantity'] @endphp
-                            <tr data-id="{{ $id }}">
-                                <td data-th="Product">
-                                    <div class="row">
-                                        <div class="col-sm-3 hidden-xs"><img src="{{ Vite::asset('resources/images') }}/{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></div>
-                                        <div class="col-sm-9">
-                                            <h4 class="nomargin">{{ $details['nm_produk'] }}</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                @php
-                                    $harga = $details['hg_produk']
-                                @endphp
-                                <td data-th="Price">Rp {{ number_format($harga, 0, ',', '.') }}</td>
-                                <td data-th="Quantity">
-                                    <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity cart_update" min="1" />
-                                </td>
-                                @php
-                                    $subharga = $details['hg_produk'] * $details['quantity']
-                                @endphp
-                                <td data-th="Subtotal" class="text-center">Rp {{ number_format($subharga, 0, ',', '.') }}</td>
-                                <td class="actions" data-th="">
-                                    <button class="btn btn-danger btn-sm cart_remove"><i class="fa fa-trash-o"></i> Delete</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5" style="text-align: right"><h3><strong>Total : Rp {{ number_format($total, 0, ',', '.') }}</strong></h3></td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" style="text-align: right">
-                            <a href="{{ route('GetProduk') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
-                            <a href="{{ route('Payment') }}" class="btn btn-success" >Checkout <i class="fa fa-arrow-right"></i></a>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
+                    <h5>MEMBER DETAIL</h5>
+                    <p>Member ID : {{ Auth::user()->id }} </p>
+                    <p>Nama Member : {{ Auth::user()->name }} </p>
+                    <p>Total Items : {{ $TotalItem }} </p>
+                    <button class="btn btn-dark">CONTINUE SHOPPING</button>
+                </div>
+            </div>
 
+            <div class="total col-lg-6 col-md-6 col-12">
+                <div>
+                    <h5>CART TOTAL</h5>
+                    <div class="d-flex justify-content-between">
+                        <h6>Subtotal</h6>
+                        <p>Rp {{ number_format($total, 0, ',', '.') }}</p>
+                    </div>
+                    <hr class="second-hr">
+                    <div class="d-flex justify-content-between">
+                        <h6>Total</h6>
+                        <p>Rp {{ number_format($total, 0, ',', '.') }}</p>
+                    </div>
+                    <form action="{{ route('Payment') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-dark Checkout">CHECKOUT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
 @endsection
 
 @push('scripts')
     <script type="text/javascript">
-        // function handlePaymentClick(event) {
-        //     // Cek apakah pengguna sudah login atau belum
-        //     @auth
-        //         // Jika pengguna sudah login, biarkan aksi href berjalan seperti biasa
-        //     @else
-        //         // Jika pengguna belum login, tampilkan SweetAlert dan hentikan aksi href
-        //         event.preventDefault();
-        //         Swal.fire({
-        //             icon: 'info',
-        //             title: 'Harap Login Terlebih Dahulu',
-        //             text: 'Anda harus login sebelum melanjutkan ke halaman pembayaran.',
-        //         });
-        //     @endauth
-        // }
 
         $(".cart_update").change(function (e) {
             e.preventDefault();
