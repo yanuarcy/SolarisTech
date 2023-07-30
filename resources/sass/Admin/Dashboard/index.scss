@@ -44,11 +44,12 @@
     margin-top: 20px;
     margin: 2%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    overflow-x: hidden;
 
     .Box {
         margin-top: 5%;
+        height: 360px;
+        overflow-y: auto;
+        overflow-x: hidden;
 
         .MainRecentSales {
             display: flex;
