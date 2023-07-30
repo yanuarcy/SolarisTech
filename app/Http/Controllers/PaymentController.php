@@ -19,6 +19,20 @@ class PaymentController extends Controller
     public function index() {
         $Tittle = 'Solaris -Tech';
 
+        // $selectedProducts = json_decode($request->input('selectedProducts'));
+
+        // $total = 0;
+
+        // // Lakukan apa pun yang perlu Anda lakukan dengan data produk yang dipilih
+        // // Contoh: $selectedProducts akan berisi array ID produk yang dipilih.
+
+        // // Hitung total harga berdasarkan produk yang dipilih
+        // foreach ($selectedProducts as $productId) {
+        //     $product = Product::find($productId);
+        //     $subTotal = $product->hg_produk * $product->quantity;
+        //     $total += $subTotal;
+        // }
+
         return view('Payment.index', compact('Tittle'));
     }
 

@@ -82,6 +82,39 @@
                         </div>
                     @endif
 
+                    {{-- @if(!empty($selectedProducts))
+                        @foreach($selectedProducts as $productID)
+                            @php
+                                // Ambil informasi produk dari ID yang dipilih
+                                $product = \App\Models\Product::find($productID);
+                                $subTotal = $product->hg_produk * $product->quantity;
+                            @endphp
+                            <div class="row mt-4">
+                                <div class="col-md-2">
+                                    <div class="">
+                                        <img src="{{ Vite::asset('resources/images') }}/{{ $product->photo }}" width="100" height="100" class="img-responsive"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <h5 style="display: inline-block; margin-right: 10px; margin-left: 10px;">{{ $product->nm_produk }}</h5>
+                                    <h5 style="margin-left: 10px;">Rp {{ number_format($product->hg_produk, 0, ',', '.') }}</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5 style="display: inline-block;" class="text-md-end">Rp {{ number_format($subTotal, 0, ',', '.') }}</h5>
+                                    <h5 class="text-md-end mt-3">x{{ $product->quantity }}</h5>
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="row mt-5">
+                            <div class="col">
+                                <h5>Subtotal</h5>
+                            </div>
+                            <div class="col">
+                                <h5 class="text-md-end">Rp {{ number_format($total, 0, ',', '.') }}</h5>
+                            </div>
+                        </div>
+                    @endif --}}
+
                 </div>
             </div>
 

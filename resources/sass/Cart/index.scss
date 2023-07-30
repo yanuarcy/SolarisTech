@@ -53,7 +53,7 @@
 }
 
 #cart-container table td:nth-child(4) {
-    width: 140px;
+    width: 130px;
 }
 
 #cart-container table td:nth-child(5) {
@@ -63,6 +63,33 @@
 #cart-container table td:nth-child(6) {
     width: 50px;
 }
+
+// #cart-container table td:nth-child(1) {
+//     width: 20px;
+// }
+
+// #cart-container table td:nth-child(2) {
+//     width: 70px;
+// }
+
+// #cart-container table td:nth-child(3) {
+//     width: 160px;
+// }
+
+// #cart-container table td:nth-child(4) {
+//     width: 60px;
+// }
+
+// #cart-container table td:nth-child(5) {
+//     width: 100px;
+// }
+
+// #cart-container table td:nth-child(6) {
+//     width: 60px;
+// }
+// #cart-container table td:nth-child(7) {
+//     width: 50px;
+// }
 
 #cart-container table tbody img {
     width: 100px;
@@ -98,7 +125,7 @@
 }
 
 #cart-bottom .coupon input,
-#cart-bottom .coupon button {
+#cart-bottom .coupon a {
     margin: 15px 0 20px 12px;
 }
 
@@ -117,7 +144,7 @@
     height: 1px;
 }
 
-#cart-bottom .total div>form>button {
+#cart-bottom .total div>button {
     margin: 0 12px 20px 0;
     display: flex;
     justify-content: flex-end;

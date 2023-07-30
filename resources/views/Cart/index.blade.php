@@ -13,6 +13,7 @@
         <table style="width: 100%">
             <thead>
                 <tr>
+                    {{-- <td></td> --}}
                     <td>Images</td>
                     <td>Product</td>
                     <td>Price</td>
@@ -37,6 +38,9 @@
                     @foreach ($cart as $id => $details )
                         @php $total += $details['hg_produk'] * $details['quantity'] @endphp
                         <tr data-id="{{ $id }}">
+                            {{-- <td>
+                                <input type="checkbox" class="product-checkout" value="{{ $id }}"> <!-- Checkbox untuk memilih produk -->
+                            </td> --}}
                             <td>
                                 <div class="hidden-xs"><img src="{{ Vite::asset('resources/images') }}/{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></div>
                             </td>
@@ -82,7 +86,11 @@
                     <p>Member ID : {{ Auth::user()->id }} </p>
                     <p>Nama Member : {{ Auth::user()->name }} </p>
                     <p>Total Items : {{ $TotalItem }} </p>
-                    <button class="btn btn-dark">CONTINUE SHOPPING</button>
+                    {{-- <form action="{{ route('GetProduk') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-dark">CONTINUE SHOPPING</button>
+                    </form> --}}
+                    <a href="{{ route('GetProduk') }}" class="btn btn-dark">CONTINUE SHOPPING</a>
                 </div>
             </div>
 
@@ -98,10 +106,14 @@
                         <h6>Total</h6>
                         <p>Rp {{ number_format($total, 0, ',', '.') }}</p>
                     </div>
-                    <form action="{{ route('Payment') }}" method="POST">
+                    {{-- <form action="{{ route('Payment') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-dark Checkout">CHECKOUT</button>
+                    </form> --}}
+                    <form id="checkoutForm" action="{{ route('Payment') }}" method="post">
+                        @csrf <!-- Pastikan Anda menggunakan Laravel untuk menambahkan token CSRF -->
+                        <input type="hidden" name="selectedProducts" id="selectedProductsInput">
                     </form>
+                    <button type="submit" class="btn btn-dark Checkout" id="btnCheckout" form="checkoutForm">CHECKOUT</button>
                 </div>
             </div>
         </div>
@@ -150,6 +162,29 @@
                 });
             }
         });
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const btnCheckout = document.getElementById('btnCheckout');
+        //     const selectedProductsInput = document.getElementById('selectedProductsInput');
+
+        //     btnCheckout.addEventListener('click', function () {
+        //         const checkboxes = document.querySelectorAll('.product-checkout');
+        //         const selectedProducts = [];
+
+        //         checkboxes.forEach((checkbox) => {
+        //             if (checkbox.checked) {
+        //                 const productId = checkbox.value;
+        //                 selectedProducts.push(productId);
+        //             }
+        //         });
+
+        //         // Simpan data produk yang dipilih ke input tersembunyi
+        //         selectedProductsInput.value = JSON.stringify(selectedProducts);
+
+        //         // Lanjutkan ke halaman pembayaran
+        //         document.getElementById('checkoutForm').submit();
+        //     });
+        // });
 
     </script>
 
