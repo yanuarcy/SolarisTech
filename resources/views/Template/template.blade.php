@@ -31,6 +31,8 @@
 
     @elseif ( $RouteSaatIni == 'HistoryOrder' ) BgCustProfile
 
+    @elseif ( $RouteSaatIni == 'DetailProduk' ) BgDetailProduk
+
     @endif
 ">
 

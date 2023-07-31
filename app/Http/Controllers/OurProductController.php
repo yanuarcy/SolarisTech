@@ -75,4 +75,15 @@ class OurProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function DetailProduk($id) {
+        $Tittle = 'Solaris - Tech';
+
+        $DetailProduct = Product::find($id);
+        // foreach ($DetailProduct as $produk) {
+        //     $produk->hg = 'Rp. ' . number_format($produk->hg_produk, 0, ',', '.');
+        // }
+
+        return view('Produk.DetailsProduk', compact('Tittle', 'DetailProduct'));
+    }
 }
