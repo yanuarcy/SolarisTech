@@ -70,7 +70,7 @@ Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->nam
 Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
 
-Route::get('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
+Route::post('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
 Route::get('/Payment/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
 Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
 Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');

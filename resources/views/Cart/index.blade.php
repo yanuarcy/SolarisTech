@@ -1,25 +1,32 @@
 @extends('Template.template')
 
 @vite('resources/js/Cart/index.js')
+@vite('resources/sass/Cart/index.scss')
 @section('Content')
 
-    <div class="container">
-        <div class="row">
-            <table id="cart" class="table table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th style="width:50%">Product</th>
-                        <th style="width:10%">Price</th>
-                        <th style="width:8%">Quantity</th>
-                        <th style="width:22%" class="text-center">Subtotal</th>
-                        <th style="width:10%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $total = 0;
-                        $cart = [];
-                        // $cart = Cache::get('cart_' . auth()->user()->id, []);
+    <section id="blog-home" class="container mt-5">
+        <h2 class="font-weight-bold pt-5">Shopping Cart</h2>
+        <hr>
+    </section>
+
+    <section id="cart-container" class="container my-5">
+        <table style="width: 100%">
+            <thead>
+                <tr>
+                    {{-- <td></td> --}}
+                    <td>Images</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $total = 0;
+                    $cart = [];
+                    // $cart = Cache::get('cart_' . auth()->user()->id, []);
 
                         if (auth()->check()) {
                             $cart = Cache::get('cart_' . auth()->user()->id, []);
@@ -50,10 +57,8 @@
                                     $subharga = $details['hg_produk'] * $details['quantity']
                                 @endphp
                                 <td data-th="Subtotal" class="text-center">Rp {{ number_format($subharga, 0, ',', '.') }}</td>
-
-
                                 <td class="actions" data-th="">
-                                    <button type="submit" class="btn btn-outline-dark btn-sm me-2 cart_remove" data-name="{{ $details['nm_produk'] }}"><i class="bi-trash"></i> Delete</button>
+                                    <button class="btn btn-danger btn-sm cart_remove"><i class="fa fa-trash-o"></i> Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -74,25 +79,35 @@
         </div>
     </div>
 
+            <div class="total col-lg-6 col-md-6 col-12">
+                <div>
+                    <h5>CART TOTAL</h5>
+                    <div class="d-flex justify-content-between">
+                        <h6>Subtotal</h6>
+                        <p>Rp {{ number_format($total, 0, ',', '.') }}</p>
+                    </div>
+                    <hr class="second-hr">
+                    <div class="d-flex justify-content-between">
+                        <h6>Total</h6>
+                        <p>Rp {{ number_format($total, 0, ',', '.') }}</p>
+                    </div>
+                    {{-- <form action="{{ route('Payment') }}" method="POST">
+                        @csrf
+                    </form> --}}
+                    <form id="checkoutForm" action="{{ route('Payment') }}" method="post">
+                        @csrf <!-- Pastikan Anda menggunakan Laravel untuk menambahkan token CSRF -->
+                        <input type="hidden" name="selectedProducts" id="selectedProductsInput">
+                    </form>
+                    <button type="submit" class="btn btn-dark Checkout" id="btnCheckout" form="checkoutForm">CHECKOUT</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
 @endsection
 
 @push('scripts')
     <script type="text/javascript">
-        function handlePaymentClick(event) {
-            // Cek apakah pengguna sudah login atau belum
-            @auth
-                // Jika pengguna sudah login, biarkan aksi href berjalan seperti biasa
-            @else
-                // Jika pengguna belum login, tampilkan SweetAlert dan hentikan aksi href
-                event.preventDefault();
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Harap Login Terlebih Dahulu',
-                    text: 'Anda harus login sebelum melanjutkan ke halaman pembayaran.',
-                });
-            @endauth
-        }
 
         $(".cart_update").change(function (e) {
             e.preventDefault();
@@ -132,6 +147,29 @@
                 });
             }
         });
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const btnCheckout = document.getElementById('btnCheckout');
+        //     const selectedProductsInput = document.getElementById('selectedProductsInput');
+
+        //     btnCheckout.addEventListener('click', function () {
+        //         const checkboxes = document.querySelectorAll('.product-checkout');
+        //         const selectedProducts = [];
+
+        //         checkboxes.forEach((checkbox) => {
+        //             if (checkbox.checked) {
+        //                 const productId = checkbox.value;
+        //                 selectedProducts.push(productId);
+        //             }
+        //         });
+
+        //         // Simpan data produk yang dipilih ke input tersembunyi
+        //         selectedProductsInput.value = JSON.stringify(selectedProducts);
+
+        //         // Lanjutkan ke halaman pembayaran
+        //         document.getElementById('checkoutForm').submit();
+        //     });
+        // });
 
     </script>
 
