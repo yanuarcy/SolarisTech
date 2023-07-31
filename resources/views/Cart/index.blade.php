@@ -150,26 +150,6 @@
             });
         });
 
-        // $(".cart_remove").click(function (e) {
-        //     e.preventDefault();
-
-        //     var ele = $(this);
-
-        //     if(confirm("Do you really want to remove?")) {
-        //         $.ajax({
-        //             url: '{{ route('remove_from_cart') }}',
-        //             method: "DELETE",
-        //             data: {
-        //                 _token: '{{ csrf_token() }}',
-        //                 id: ele.parents("tr").attr("data-id")
-        //             },
-        //             success: function (response) {
-        //                 window.location.reload();
-        //             }
-        //         });
-        //     }
-        // });
-
         $(".cart_remove").click(function (e) {
             e.preventDefault();
 
@@ -228,6 +208,28 @@
                         text: 'Anda harus login terlebih dahulu sebelum melakukan checkout.',
                         confirmButtonText: 'OK'
                     });
+                }
+            });
+
+            btnCheckout.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+
+                // Check if the cart is empty
+                if ({{ $TotalItem }} === 0) {
+                    swal.fire("Cart is Empty", "You cannot checkout with an empty cart.", "error");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Keranjang anda kosong',
+                        text: 'Anda harus belanja terlebih dahulu sebelum melakukan checkout.',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{{ route('GetProduk') }}";
+                        }
+                    });
+                } else {
+                    // If the cart is not empty, submit the form
+                    document.getElementById('checkoutForm').submit();
                 }
             });
         });

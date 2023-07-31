@@ -6,7 +6,7 @@
 
 @if ($RouteSaatIni == 'Transaksi')
     <div class="d-flex justify-content-center">
-        <a href="" class="btn btn-primary btn-sm me-2"><i class="bi bi-search"></i></a>
+        <a href="{{ Vite::asset('resources/images/BuktiBayar/' . $Transaksi->photo) }}" target="_blank" class="btn btn-primary btn-sm me-2"><i class="bi bi-search"></i></a>
         @if ($Transaksi->status_bayar == 'Menunggu Konfirmasi')
             <a href="{{ route('updateStatus', ['id' => $Transaksi->id]) }}" class="btn btn-success btn-sm me-2"><i class="fas fa-check"></i></a>
         @endif
@@ -16,17 +16,11 @@
     <div class="d-flex justify-content-center">
 
         <div>
-            <form action="" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-primary btn-sm me-2 btn-delete"><i class="bi bi-search"></i></button>
-            </form>
+            <a href="{{ Vite::asset('resources/images/' . $products->photo) }}" target="_blank" class="btn btn-primary btn-sm me-2"><i class="bi bi-search"></i></a>
         </div>
 
         <div>
-            <form action="" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-warning btn-sm me-2 btn-delete"><i class="bi-pencil-square"></i></button>
-            </form>
+            <a href="{{ route('Product.edit', ['Product' => $products->id]) }}" class="btn btn-warning btn-sm me-2"><i class="bi-pencil-square"></i></a>
         </div>
 
         <div>
@@ -42,10 +36,7 @@
     <div class="d-flex justify-content-center">
 
         <div>
-            <form action="" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-warning btn-sm me-2 btn-delete"><i class="bi-pencil-square"></i></button>
-            </form>
+            <a href="{{ route('Kategori.edit', ['Kategori' => $Kategoris->id]) }}" class="btn btn-warning btn-sm me-2"><i class="bi-pencil-square"></i></a>
         </div>
 
         <div>
@@ -61,7 +52,7 @@
     <div class="text-center">
         <form action="" method="POST">
             @csrf
-            <button type="submit" class="btn btn-warning btn-sm me-2 btn-delete">View</button>
+            <button type="submit" class="btn btn-warning btn-sm me-2">View</button>
         </form>
     </div>
 </div>

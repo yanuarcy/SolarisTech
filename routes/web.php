@@ -37,7 +37,9 @@ route::fallback(function () {
 });
 
 Route::get('/About', function () {
-    return view('app.about');
+    $Tittle = 'Solaris - Tech';
+
+    return view('app.about', compact('Tittle'));
 })->name('AboutUs');
 
 Route::group(['middleware' => ['auth', 'cekrole:admin']], function () {

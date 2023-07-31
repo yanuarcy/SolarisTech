@@ -88,10 +88,16 @@ class PaymentController extends Controller
         $cart = [];
 
 
+
         if (auth()->check()) {
             $cart = Cache::get('cart_' . auth()->user()->id, []);
         } else {
             $cart = Cache::get('cart', []);
+        }
+
+        if (empty($cart)) {
+            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
+            return redirect()->back();
         }
 
         foreach ($cart as $id => $details) {
@@ -120,8 +126,9 @@ class PaymentController extends Controller
         if (!$methodPay) {
             // Tangani kasus jika methodPay tidak ditemukan (misalnya, kembali ke halaman sebelumnya dengan pesan kesalahan)
             // return redirect()->back()->with('error', 'Metode pembayaran tidak valid.');
-            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
+            Alert::error('Oops....', 'Silahkan pilih Metode Pembayaran');
             return redirect()->back();
+            // return redirect()->route('AboutUs');
         }
 
         $transaksi = Transaksi::create([
@@ -147,10 +154,7 @@ class PaymentController extends Controller
             Cache::forget('cart');
         }
 
-        if (empty($cart)) {
-            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
-            return redirect()->back();
-        }
+
 
         toast('Order Successfully, Processing Now','success');
 
