@@ -24,14 +24,17 @@
                             <form action="{{ route('processUploadProof') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <label for="kd_pemesanan" class="form-label">Kode Pemesanan</label>
-                                <input class="form-control w-75 @error('kd_pemesanan') is-invalid @enderror" type="text" name="kd_pemesanan" placeholder="Kode Pemesanan">
+                                <input class="form-control w-75 @error('kd_pemesanan') is-invalid @enderror" type="text" value="{{ old('kd_pemesanan') }}" name="kd_pemesanan" placeholder="Kode Pemesanan">
                                 @error('kd_pemesanan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <h6 class="text-danger">*Kode Pemesanan dapat dilihat di bagian MyProfile</h6>
 
                                 <label for="PaymentProof" class="form-label mt-3">Upload Bukti Bayar</label>
-                                <input type="file" class="form-control w-75" name="PaymentProof" id="PaymentProof">
+                                <input type="file" class="form-control w-75 @error('PaymentProof') is-invalid @enderror" name="PaymentProof" id="PaymentProof">
+                                @error('PaymentProof')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                                 <input type="submit" value="Kirim" class="btn btn-primary w-75 mt-5">
                             </form>
                         </h2>

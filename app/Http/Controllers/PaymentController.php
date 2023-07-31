@@ -119,7 +119,9 @@ class PaymentController extends Controller
         $methodPay = Methodpay::where('metode_pembayaran', $paymentMethod)->first();
         if (!$methodPay) {
             // Tangani kasus jika methodPay tidak ditemukan (misalnya, kembali ke halaman sebelumnya dengan pesan kesalahan)
-            return redirect()->back()->with('error', 'Metode pembayaran tidak valid.');
+            // return redirect()->back()->with('error', 'Metode pembayaran tidak valid.');
+            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
+            return redirect()->back();
         }
 
         $transaksi = Transaksi::create([
@@ -184,6 +186,7 @@ class PaymentController extends Controller
         ], $message);
 
         if ($validator->fails()) {
+            Alert::error('Oops....', 'Silahkan inputan yang kosong');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
