@@ -19,10 +19,9 @@
                     <h5>Rp {{ number_format($DetailProduct->hg_produk, 0, ',', '.') }}</h5>
                     <h5 class="mt-4">{{ $DetailProduct->desc_produk }}</h5>
 
-                    <form action="" method="POST">
-                        @csrf
-                        <input type="submit" value="Buy" class="btn btn-primary w-25 mt-5">
-                    </form>
+                    <a href="{{ route('addTo-Cart', $DetailProduct->id) }}">
+                        <button class="btn btn-primary w-25 mt-5">Buy</button>
+                    </a>
                 </div>
             </div>
         </div>
