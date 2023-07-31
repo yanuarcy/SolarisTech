@@ -22,6 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="
     @if ( $RouteSaatIni == 'CustProfile' ) BgCustProfile
@@ -29,6 +30,8 @@
     @elseif ( $RouteSaatIni == 'AboutUs' ) BgAboutUs
 
     @elseif ( $RouteSaatIni == 'HistoryOrder' ) BgCustProfile
+
+    @elseif ( $RouteSaatIni == 'DetailProduk' ) BgDetailProduk
 
     @endif
 ">

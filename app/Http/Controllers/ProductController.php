@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -99,7 +100,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -107,7 +108,12 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $Tittle = 'Solaris - Tech';
+
+        $products = Product::find($id);
+        $Kategoris = Kategori::all();
+
+        return view('Admin.Stuff.EditProduk', compact('Tittle', 'products', 'Kategoris'));
     }
 
     /**
@@ -115,7 +121,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+            'numeric' => 'Isi :attribute dengan angka'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nama_produk' => 'required',
+            'kategori' => 'required',
+            'stok' => 'required|numeric',
+            'harga_produk' => 'required|numeric',
+            'desc_produk' => 'required',
+            'gambar' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        }
+
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $imageName= $image->getClientOriginalName();
+            // $imageName = 'Product' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(resource_path('images'), $imageName);
+            // $image->storeAs('images', $imageName, 'resources');
+            // $image->move(public_path('resources/images'), $imageName);
+        } else {
+            $imageName = null;
+        }
+
+        $hargaProduk = str_replace(['Rp', '.', ' '], '', $request->harga_produk);
+
+        $products = Product::find($id);
+        $products->nm_produk = $request->nama_produk;
+        $products->kategori_id = $request->kategori;
+        $products->stok = $request->stok;
+        $products->hg_produk = $hargaProduk;
+        $products->desc_produk = $request->desc_produk;
+        $products->photo = $imageName;
+        $products->save();
+
+        Alert::success('Changed Successfully', 'Product Data Changed Successfully.');
+
+        return redirect()->route('Product.index');
     }
 
     /**

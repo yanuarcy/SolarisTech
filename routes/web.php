@@ -27,6 +27,7 @@ use App\Http\Controllers\ProfileCust;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
+Route::get('/AboutUs', [HomeController::class, 'aboutUs'])->name('AboutUs');
 Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
 Route::get('/CustProfile/HistoryOrder', [ProfileCust::class, 'HistoryOrder'])->name('HistoryOrder')->middleware('auth', 'cekrole:user');
 Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile')->middleware('auth', 'cekrole:admin');
@@ -36,9 +37,7 @@ route::fallback(function () {
     return view('app.404');
 });
 
-Route::get('/About', function () {
-    return view('app.about');
-})->name('AboutUs');
+
 
 Route::group(['middleware' => ['auth', 'cekrole:admin']], function () {
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('Dashboard');
@@ -58,6 +57,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk');
 Route::get('/Produk/{kategori}', [OurProductController::class, 'getKategori'])->name('GetKategori');
+Route::get('/DetailProduk/{id}', [OurProductController::class, 'DetailProduk'])->name('DetailProduk');
 
 Route::get('getMember', [MemberController::class, 'getData'])->name('Member.getData');
 Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
@@ -73,7 +73,7 @@ Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remo
 Route::post('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
 Route::get('/Payment/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
 Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
-Route::post('/Payment/process', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
+Route::post('/Payment/proccess', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
 Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');
 Route::post('/Payment/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof')->middleware('auth');
 

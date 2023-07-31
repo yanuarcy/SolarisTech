@@ -88,10 +88,16 @@ class PaymentController extends Controller
         $cart = [];
 
 
+
         if (auth()->check()) {
             $cart = Cache::get('cart_' . auth()->user()->id, []);
         } else {
             $cart = Cache::get('cart', []);
+        }
+
+        if (empty($cart)) {
+            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
+            return redirect()->back();
         }
 
         foreach ($cart as $id => $details) {
@@ -119,7 +125,10 @@ class PaymentController extends Controller
         $methodPay = Methodpay::where('metode_pembayaran', $paymentMethod)->first();
         if (!$methodPay) {
             // Tangani kasus jika methodPay tidak ditemukan (misalnya, kembali ke halaman sebelumnya dengan pesan kesalahan)
-            return redirect()->back()->with('error', 'Metode pembayaran tidak valid.');
+            // return redirect()->back()->with('error', 'Metode pembayaran tidak valid.');
+            Alert::error('Oops....', 'Silahkan pilih Metode Pembayaran');
+            return redirect()->back();
+            // return redirect()->route('AboutUs');
         }
 
         $transaksi = Transaksi::create([
@@ -145,10 +154,9 @@ class PaymentController extends Controller
             Cache::forget('cart');
         }
 
-        if (empty($cart)) {
-            Alert::error('Oops....', 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.');
-            return redirect()->back();
-        }
+
+
+        toast('Order Successfully, Processing Now','success');
 
         // Alihkan ke halaman berikutnya dengan data yang diperlukan
         return redirect()->route('showPaymentInfo')->with('payment_method', $paymentMethod)->with('orderCode', $orderCode);
@@ -178,10 +186,11 @@ class PaymentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'kd_pemesanan' => 'required',
-            'PaymentProof' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'PaymentProof' => 'required',
         ], $message);
 
         if ($validator->fails()) {
+            Alert::error('Oops....', 'Silahkan inputan yang kosong');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -210,7 +219,8 @@ class PaymentController extends Controller
         $transaksi->photo = $imageName;
         $transaksi->save();
 
-        return redirect()->route('Home')->with('success', 'Bukti pembayaran berhasil diunggah. Pembayaran Anda telah diverifikasi.');
+        Alert::success('Success', 'Bukti pembayaran Anda berhasil dikirim!');
+        return redirect()->route('Home');
     }
 
     // Metode ini harus disesuaikan dengan cara Anda mengambil data no rekening dari database

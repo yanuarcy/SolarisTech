@@ -17,4 +17,10 @@ class HomeController extends Controller
 
         return view('app.index', compact('Tittle', 'products'));
     }
+
+    public function aboutUs() {
+        $Tittle = 'Solaris - Tech';
+
+        return view('app.about', compact('Tittle'));
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriController extends Controller
 {
@@ -66,7 +67,11 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $Tittle = 'Solaris - Tech';
+
+        $Kategoris = Kategori::find($id);
+
+        return view('Admin.Kategori.EditKategori', compact('Tittle', 'Kategoris'));
     }
 
     /**
@@ -74,7 +79,26 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nm_kategori' => 'required'
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        }
+
+        $Kategori = Kategori::find($id);
+        $Kategori->nm_kategori = $request->nm_kategori;
+        $Kategori->save();
+
+        Alert::success('Changed Successfully', 'Kategori Data Changed Successfully.');
+
+        return redirect()->route('Kategori.index');
     }
 
     /**

@@ -62,7 +62,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                @endforeach
+                    @endforeach
                 </div>
                 <hr>
                 <div class="row">
@@ -97,5 +97,25 @@
                 });
             });
         });
+
+        function showEmptyHistoryAlert() {
+            Swal.fire({
+                icon: "info",
+                title: "Oops..",
+                text: "Maaf history belanja Anda kosong.",
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ambil jumlah elemen tbody yang ada di dalam setiap tabel
+            const tbodyElements = document.querySelectorAll('table tbody');
+            const isEmpty = Array.from(tbodyElements).every(tbody => tbody.childElementCount === 0);
+
+            // Jika semua tbody kosong, tampilkan SweetAlert
+            if (isEmpty) {
+                showEmptyHistoryAlert();
+            }
+        });
+
     </script>
 @endpush
