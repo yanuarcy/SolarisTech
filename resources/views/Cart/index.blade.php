@@ -27,56 +27,7 @@
                     $total = 0;
                     $cart = [];
                     // $cart = Cache::get('cart_' . auth()->user()->id, []);
-                        if (auth()->check()) {
-                            $cart = Cache::get('cart_' . auth()->user()->id, []);
-                        } else {
-                            $cart = Cache::get('cart', []);
-                        }
-                    @endphp
-                    @if(!empty($cart))
-                        @foreach($cart as $id => $details)
-                            @php $total += $details['hg_produk'] * $details['quantity'] @endphp
-                            <tr data-id="{{ $id }}">
-                                <td data-th="Product">
-                                    <div class="row">
-                                        <div class="col-sm-3 hidden-xs"><img src="{{ Vite::asset('resources/images') }}/{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></div>
-                                        <div class="col-sm-9">
-                                            <h4 class="nomargin">{{ $details['nm_produk'] }}</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                @php
-                                    $harga = $details['hg_produk']
-                                @endphp
-                                <td data-th="Price">Rp {{ number_format($harga, 0, ',', '.') }}</td>
-                                <td data-th="Quantity">
-                                    <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity cart_update" min="1" />
-                                </td>
-                                @php
-                                    $subharga = $details['hg_produk'] * $details['quantity']
-                                @endphp
-                                <td data-th="Subtotal" class="text-center">Rp {{ number_format($subharga, 0, ',', '.') }}</td>
-                                <td class="actions" data-th="">
-                                    <button class="btn btn-danger btn-sm cart_remove"><i class="fa fa-trash-o"></i> Delete</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5" style="text-align: right"><h3><strong>Total : Rp {{ number_format($total, 0, ',', '.') }}</strong></h3></td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" style="text-align: right">
-                            <a href="{{ route('GetProduk') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
-                            <a href="{{ route('Payment') }}" class="btn btn-success" onclick="handlePaymentClick(event)">Checkout <i class="fa fa-arrow-right"></i></a>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>      @php
+
                     if (auth()->check()) {
                         $cart = Cache::get('cart_' . auth()->user()->id, []);
                     } else {
