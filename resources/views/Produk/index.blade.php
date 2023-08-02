@@ -53,7 +53,7 @@
                         <p class="card-text">{{ $product->hg_produk }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="" class="btn btn-warning"><i class="bi bi-eye"></i></a>
+                        <a href="{{ route('DetailProduk', ['id' => $product->id]) }}" class="btn btn-warning"><i class="bi bi-eye"></i></a>
                         <a href="{{ route('addTo-Cart', $product->id) }}" class="btn btn-primary addToCartBtn">
                             <i class="bi bi-cart3"></i>
                         </a>

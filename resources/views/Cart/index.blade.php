@@ -78,9 +78,11 @@
                 <div>
                     @php
                         $TotalItem = 0;
+
                         foreach ($cart as $product) {
                             $TotalItem += $product['quantity'];
                         }
+
                     @endphp
                     @guest
                         <h5>MEMBER DETAIL</h5>

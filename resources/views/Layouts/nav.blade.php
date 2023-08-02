@@ -56,7 +56,7 @@
                 <li class="nav-item Cart
                     @if ($RouteSaatIni == 'Home') JarakKiriCart
 
-                    @elseif ($RouteSaatIni == 'AboutUs') JarakKiriCart
+                    @elseif ($RouteSaatIni == 'AboutUs' || $RouteSaatIni == 'DetailProduk') JarakKiriCart
 
                     @endif
                 ">

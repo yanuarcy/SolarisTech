@@ -190,7 +190,7 @@ class PaymentController extends Controller
         ], $message);
 
         if ($validator->fails()) {
-            Alert::error('Oops....', 'Silahkan inputan yang kosong');
+            Alert::error('Oops....', 'Silahkan Isi inputan yang kosong');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
