@@ -65,6 +65,8 @@
             @endforeach
         </div>
     </div>
+
+    @include('Layouts.footer')
 @endsection
 
 @push('scripts')
