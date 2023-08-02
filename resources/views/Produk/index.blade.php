@@ -5,8 +5,8 @@
     'resources/sass/Produk/index.scss',
     'resources/sass/Produk/dropdown.scss',
     'resources/sass/Layouts/nav.scss',
-    'resources/js/Produk/DropdownKategori.js'
-
+    'resources/js/Produk/DropdownKategori.js',
+    'resources/sass/Layouts/footer.scss'
 ])
 
 @section('Content')

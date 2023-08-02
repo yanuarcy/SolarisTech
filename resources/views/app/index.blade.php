@@ -21,7 +21,7 @@
         <div class="container text-center">
             <div class="komponen">
                 <h2 class="display-4"><span>Find</span> and <span>Get</span><br> What You Need</h2>
-                <a href="" class="btn button">Get Product</a>
+                <a href="#Catalog" class="btn button">Get Product</a>
             </div>
         </div>
     </div>
