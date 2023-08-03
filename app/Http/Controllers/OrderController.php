@@ -66,8 +66,8 @@ class OrderController extends Controller
         }
     }
 
-    public function exportExcel()
+    public function TransaksiexportExcel()
     {
-        return Excel::download(new TransaksiExport, 'LaporanTransaksiSolarisTech.xlsx');
+        return Excel::download(new TransaksiExport, 'LaporanPenjualanSolarisTech.xlsx');
     }
 }

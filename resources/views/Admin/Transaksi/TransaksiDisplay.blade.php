@@ -2,11 +2,6 @@
 
 @section('contentdashboard')
     <div class="container mt-4">
-        {{-- <div class="row mb-0">
-            <div class="col-lg-9 col-xl-10">
-                <h4 class="mb-3">{{ $Tittle }}</h4>
-            </div>
-        </div> --}}
         <div class="row mb-0">
             <div class="col-lg-9 col-xl-6">
                 <h4 class="mb-3">{{ $Tittle }}</h4>
@@ -17,7 +12,7 @@
                     </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">
-                        <a href="{{ route('Transaksi.getData') }}" class="btn btn-outline-success">
+                        <a href="{{ route('Transaksi.exportExcel') }}" class="btn btn-outline-success">
                             <i class="bi bi-download me-1"></i> to Excel
                         </a>
                     </li>
