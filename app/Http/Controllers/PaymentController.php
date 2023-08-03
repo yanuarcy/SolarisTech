@@ -211,7 +211,7 @@ class PaymentController extends Controller
 
         if (!$transaksi) {
             Alert::error('Oops....', 'Kode Pemesanan Anda belum terdaftar');
-            return redirect()->back();
+            // return redirect()->back();
         }
 
         // Update kolom status_bayar menjadi 'sukses' dan simpan path gambar di kolom bukti_pembayaran

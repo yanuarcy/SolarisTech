@@ -1,7 +1,56 @@
+.headerTittle {
+    margin: 2%;
+    padding-top: 5%;
+}
+
 .InfoPanel {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    .Member {
+        background-color: black;
+        border: 1px solid #888888;
+
+        .header {
+            color: rgb(216, 199, 199);
+        }
+
+        .footer {
+            color: rgb(184, 178, 178);
+        }
+    }
+
+    .Product {
+        background-color: black;
+        border: 1px solid #888888;
+
+        .header {
+            color: rgb(216, 199, 199);
+        }
+    }
+
+    .Kategori {
+        background-color: black;
+        border: 1px solid #888888;
+
+        .header {
+            color: rgb(216, 199, 199);
+        }
+    }
+
+    .TotalRevenue {
+        background-color: black;
+        border: 1px solid #888888;
+
+        .header {
+            color: rgb(216, 199, 199);
+        }
+
+        .footer {
+            color:  rgb(184, 178, 178);
+        }
+    }
 }
 
 .card {
@@ -29,15 +78,33 @@
     background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
+    height: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: black;
+    border: 1px solid #888888;
+
+    .header {
+        padding-left: 3%;
+    }
 }
 
 .recent-sales {
-    background-color: #f0f0f0;
+    // background-color: #f0f0f0;
+    background-color: black;
+    color: white;
     border-radius: 5px;
     padding: 10px;
+    // margin: 1%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #888888;
+
+    .header{
+        padding: 2% 0 0 4%;
+
+        .SalesTotal {
+            color: rgb(184, 178, 178);
+        }
+    }
 
     .Box {
         margin-top: 5%;
@@ -48,6 +115,10 @@
         .MainRecentSales {
             display: flex;
             flex-direction: column;
+
+            .email {
+                color: rgb(184, 178, 178);
+            }
         }
 
         i {

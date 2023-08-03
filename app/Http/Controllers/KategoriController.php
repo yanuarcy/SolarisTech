@@ -51,6 +51,8 @@ class KategoriController extends Controller
         $Kategori->nm_kategori = $request->nm_kategori;
         $Kategori->save();
 
+        Alert::success('Created Successfully', 'New Category Data Successfully.');
+
         return redirect()->route('Kategori.index');
     }
 
@@ -110,7 +112,7 @@ class KategoriController extends Controller
         $Kategori->delete();
 
         // Alert::success('Deleted Successfully', 'Product Data Deleted Successfully.');
-        toast('Product Data Deleted Successfully','success');
+        toast('Category Data Deleted Successfully','success');
 
         return redirect()->route('Kategori.index');
     }

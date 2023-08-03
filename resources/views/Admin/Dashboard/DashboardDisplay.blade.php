@@ -3,15 +3,18 @@
 
 @vite('resources/sass/Admin/Dashboard/index.scss')
 @section('contentdashboard')
-    <div class="container">
+    <div class="container Dashboard">
         <div class="row">
+            <div class="headerTittle">
+                <h2 class="Tittle">{{ $Tittle }}</h2>
+            </div>
             <div class="InfoPanel">
 
-                <div class="card">
+                <div class="card Member">
                     <div class="header">
                         <h5>Member</h5>
                     </div>
-                    <div class="main">
+                    <div class="main text-white">
                         <h4>{{ $MemberCount }}</h4>
                     </div>
                     <div class="footer">
@@ -20,29 +23,29 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card Product">
                     <div class="header">
                         <h5>Product</h5>
                     </div>
-                    <div class="main">
+                    <div class="main text-white">
                         <h4>{{ $ProductCount }}</h4>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card Kategori">
                     <div class="header">
                         <h5>Category</h5>
                     </div>
-                    <div class="main">
+                    <div class="main text-white">
                         <h4>{{ $KategoriCount }}</h4>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card TotalRevenue">
                     <div class="header">
                         <h5>Total Revenue</h5>
                     </div>
-                    <div class="main">
+                    <div class="main text-white">
                         <h4>Rp {{ number_format($TotalRevenue, 0, ',', '.') }}</h4>
                     </div>
                     <div class="footer">
@@ -118,7 +121,7 @@
                     <div class="recent-sales">
                         <div class="header">
                             <h4>Recent Sales</h4>
-                            <h6>{{ $TotalSales }} Sales this month</h6>
+                            <h6 class="SalesTotal">{{ $TotalSales }} Sales this month</h6>
                         </div>
                         <div class="Box">
                             <div class="MainRecentSales">
@@ -129,8 +132,8 @@
                                         </div>
                                         <div class="col-md-7">
                                             <div class="row">
-                                                <h5>{{ $Transaksi->nm_member }}</h5>
-                                                <h6>{{ $Transaksi->email }}</h6>
+                                                <h5 class="nama">{{ $Transaksi->nm_member }}</h5>
+                                                <h6 class="email">{{ $Transaksi->email }}</h6>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -155,7 +158,7 @@
         var options = {
             chart: {
                 type: 'bar',
-                height: 350,
+                height: 400,
                 toolbar: {
                     show: false
                 }

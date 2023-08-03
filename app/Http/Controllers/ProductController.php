@@ -90,6 +90,7 @@ class ProductController extends Controller
         $product->photo = $imageName;
         $product->save();
 
+        Alert::success('Created Successfully', 'New Product Data Successfully.');
 
         return redirect()->route('Product.index')->with('success', 'Produk berhasil ditambahkan.');
         // return redirect('/produk')->with('success', 'Produk berhasil ditambahkan.');
