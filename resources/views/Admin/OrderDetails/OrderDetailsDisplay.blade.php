@@ -15,6 +15,7 @@
                         {{-- <th align="center">ID</th> --}}
                         <th style="width: 1%">No. </th>
                         <th class="text-center">Tanggal Order</th>
+                        <th class="text-center">Order ID</th>
                         <th class="text-center">Nama Member</th>
                         <th class="text-center">Nama Barang</th>
                         <th class="text-center">Jumlah Barang</th>
@@ -29,6 +30,7 @@
                         <tr>
                             <td>{{ $No }}</td>
                             <td class="text-center">{{ $detailOrder->created_at ? \Carbon\Carbon::parse($detailOrder->created_at)->format('Y-m-d') : '-' }}</td>
+                            <td>{{ $detailOrder->order_id }}</td>
                             <td>{{ $detailOrder->nm_member }}</td>
                             <td>{{ $detailOrder->nm_barang }}</td>
                             <td>{{ $detailOrder->jml_barang }}</td>
@@ -48,26 +50,6 @@
     <script type="module">
         $(document).ready(function() {
             $('#DetailOrder').DataTable();
-
-            $(".datatable").on("click", ".btn-delete", function (e) {
-                e.preventDefault();
-
-                var form = $(this).closest("form");
-                var name = $(this).data("name");
-
-                Swal.fire({
-                    title: "Are you sure want to delete\n" + name + "?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "bg-primary",
-                    confirmButtonText: "Yes, delete it!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-            });
 
         });
     </script>
