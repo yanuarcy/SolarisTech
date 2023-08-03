@@ -50,7 +50,9 @@ class DashboardController extends Controller
         $TotalSales = 0;
         $Transaksis = Transaksi::all();
         foreach ($Transaksis as $Transaksi) {
-            $TotalRevenue += $Transaksi->jml_transaksi;
+            if($Transaksi->status_bayar == 'Sukses' || $Transaksi->status_bayar == 'sukses' ) {
+                $TotalRevenue += $Transaksi->jml_transaksi;
+            }
             $TotalSales++;
         }
 

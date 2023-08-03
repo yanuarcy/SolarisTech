@@ -14,35 +14,28 @@
     margin-top: 5%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    // align-items: center;
-    // justify-content: center;
 }
 
 .mainDashboard {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+}
+
+.column {
+    flex: 1;
+    margin: 1%;
 }
 
 .bar-chart {
-    width: 400px;
-    height: 300px;
     background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
-    margin-top: 20px;
-    margin: 2%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .recent-sales {
-    width: 700px;
-    height: 480px;
     background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
-    margin-top: 20px;
-    margin: 2%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
     .Box {
