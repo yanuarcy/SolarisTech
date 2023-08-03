@@ -7,6 +7,8 @@ use App\Models\Orderdetails;
 use App\Models\Transaksi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TransaksiExport;
 
 class OrderController extends Controller
 {
@@ -15,19 +17,19 @@ class OrderController extends Controller
 
         return view('Admin.Order.OrderDisplay', compact('Tittle'));
     }
-    
+
     public function OrderDetails() {
         $Tittle = 'SolarisTech - OrderDetails';
-        
+
         $OrderDetails = Orderdetails::all();
         foreach ($OrderDetails as $DetailOrder) {
             $DetailOrder->total_harga = 'Rp. ' . number_format($DetailOrder->total_harga, 0, ',', '.');
             // $DetailOrder->created_at = $DetailOrder->created_at->format('Y-m-d');
             Carbon::parse($DetailOrder->created_at)->format('Y-m-d');
         }
-        
+
         return view('Admin.OrderDetails.OrderDetailsDisplay', compact('Tittle', 'OrderDetails'));
-        
+
     }
 
     public function Transaksi() {
@@ -64,17 +66,8 @@ class OrderController extends Controller
         }
     }
 
-    public function getDataTransaksi(Request $request)
+    public function exportExcel()
     {
-        $Transaksi = Transaksi::all();
-
-        if ($request->ajax()) {
-            return datatables()->of($Transaksi)
-                ->addIndexColumn()
-                ->addColumn('created_at', function ($Transaksi) {
-                    return $Transaksi->created_at->format('Y-m-d'); // Ubah format sesuai yang Anda inginkan
-                })
-                ->toJson();
-        }
+        return Excel::download(new TransaksiExport, 'LaporanTransaksiSolarisTech.xlsx');
     }
 }

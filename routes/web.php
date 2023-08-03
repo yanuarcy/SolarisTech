@@ -50,6 +50,7 @@ Route::get('/Dashboard/Order', [OrderController::class, 'Order'])->name('Order')
 Route::get('/Dashboard/OrderDetails', [OrderController::class, 'OrderDetails'])->name('OrderDetails');
 Route::get('/Dashboard/Transaksi', [OrderController::class, 'Transaksi'])->name('Transaksi');
 Route::get('/Dashboard/Transaksi/updateStatus/{id}', [PaymentController::class, 'updateStatus'])->name('updateStatus')->middleware('auth', 'cekrole:admin');
+Route::get('/Dashboard/Transaksi/exportExcel', [EmployeeController::class, 'exportExcel'])->name('Transaksi.exportExcel');
 
 
 Auth::routes();
@@ -63,7 +64,7 @@ Route::get('getMember', [MemberController::class, 'getData'])->name('Member.getD
 Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
 Route::get('getKategori', [KategoriController::class, 'getData'])->name('Kategori.getData');
 Route::get('getOrder', [OrderController::class, 'getDataOrder'])->name('Order.getData');
-Route::get('getTransaksi', [OrderController::class, 'getData'])->name('Transaksi.getData');
+Route::get('getTransaksi', [OrderController::class, 'exportExcel'])->name('Transaksi.getData');
 
 Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
@@ -76,5 +77,3 @@ Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showP
 Route::post('/Payment/proccess', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
 Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');
 Route::post('/Payment/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof')->middleware('auth');
-
-

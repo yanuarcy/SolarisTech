@@ -2,9 +2,26 @@
 
 @section('contentdashboard')
     <div class="container mt-4">
-        <div class="row mb-0">
+        {{-- <div class="row mb-0">
             <div class="col-lg-9 col-xl-10">
                 <h4 class="mb-3">{{ $Tittle }}</h4>
+            </div>
+        </div> --}}
+        <div class="row mb-0">
+            <div class="col-lg-9 col-xl-6">
+                <h4 class="mb-3">{{ $Tittle }}</h4>
+            </div>
+            <div class="col-lg-3 col-xl-6">
+                <ul class="list-inline mb-0 float-end">
+                    <li class="list-inline-item">
+                    </li>
+                    <li class="list-inline-item">|</li>
+                    <li class="list-inline-item">
+                        <a href="{{ route('Transaksi.getData') }}" class="btn btn-outline-success">
+                            <i class="bi bi-download me-1"></i> to Excel
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         <hr>
@@ -43,7 +60,6 @@
                             <td>{{ $Transaksi->jml_transaksi }}</td>
                             <td>{{ $Transaksi->metode_pembayaran }}</td>
                             <td>{{ $Transaksi->status_bayar }}</td>
-                            {{-- <td>{{ $Transaksi->photo }}</td> --}}
                             <td>
                                 @if ($Transaksi->photo)
                                     <img src="{{ Vite::asset('resources/images/BuktiBayar/' . $Transaksi->photo) }}" alt="{{ $Transaksi->nm_produk }}" width="100">
@@ -68,26 +84,6 @@
     <script type="module">
         $(document).ready(function() {
             $('#TransaksiTable').DataTable();
-
-            $(".datatable").on("click", ".btn-delete", function (e) {
-                e.preventDefault();
-
-                var form = $(this).closest("form");
-                var name = $(this).data("name");
-
-                Swal.fire({
-                    title: "Are you sure want to delete\n" + name + "?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "bg-primary",
-                    confirmButtonText: "Yes, delete it!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-            });
 
         });
     </script>
