@@ -24,7 +24,9 @@
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="{{ route('Member.index') }}" class="nav-link text-white">
+                    <a href="{{ route('Member.index') }}" class="nav-link text-white @if ($RouteSaatIni == 'Member.index')
+                        active
+                    @endif">
                         <i class="bi bi-person-circle"></i>    Member
                     </a>
                 </li>
@@ -38,7 +40,9 @@
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="{{ route('Kategori.index') }}" class="nav-link text-white">
+                    <a href="{{ route('Kategori.index') }}" class="nav-link text-white @if ($RouteSaatIni == 'Kategori.index')
+                        active
+                    @endif">
                         <i class="bi bi-bookmarks-fill"></i>    Category
                     </a>
                 </li>
@@ -46,19 +50,25 @@
 
 
                 <li class="nav-item">
-                    <a href="{{ route('Order') }}" class="nav-link text-white">
+                    <a href="{{ route('Order') }}" class="nav-link text-white @if ($RouteSaatIni == 'Order')
+                        active
+                    @endif">
                         <i class="bi bi-table"></i>    Order
                     </a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="{{ route('OrderDetails') }}" class="nav-link text-white">
+                    <a href="{{ route('OrderDetails') }}" class="nav-link text-white @if ($RouteSaatIni == 'OrderDetails')
+                    active
+                    @endif">
                         <i class="bi bi-ui-checks"></i> Order Details
                     </a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="{{ route('Transaksi') }}" class="nav-link text-white">
+                    <a href="{{ route('Transaksi') }}" class="nav-link text-white @if ($RouteSaatIni == 'Transaksi')
+                    active
+                    @endif">
                         <i class="bi bi-wallet"></i> Transaksi
                     </a>
                 </li>
