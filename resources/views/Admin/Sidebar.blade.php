@@ -9,7 +9,7 @@
     <main>
         {{-- <h1 class="visually-hidden">Sidebars examples</h1> --}}
 
-        <div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-dark" style="width: 280px;">
+        <div class="d-flex flex-column flex-shrink-0 p-4 text-white" style="width: 280px; background-color: #191C24">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4"><i class="bi bi-cpu"></i> SOLARISTECH</span>
             </a>

@@ -80,8 +80,10 @@ class OrderController extends Controller
     {
         $Tittle = 'SolarisTech - Transaksi';
         $Transaksi = Transaksi::all();
+        date_default_timezone_set('Asia/Jakarta');
+        $currentTime = now()->format('d F Y H:i:s');
 
-        $pdf = PDF::loadView('Admin.Transaksi.ExportPDF', compact('Transaksi', 'Tittle'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('Admin.Transaksi.ExportPDF', compact('Transaksi', 'Tittle', 'currentTime'))->setPaper('a4', 'landscape');
 
         return $pdf->download('LaporanPenjualanSolarisTech.pdf');
     }
