@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TransaksiExport;
-use Barryvdh\DomPDF\PDF as DomPDFPDF;
+// use Barryvdh\DomPDF\PDF as DomPDFPDF;
 // use Barryvdh\DomPDF\PDF;
 use PDF;
 
@@ -81,7 +81,7 @@ class OrderController extends Controller
         $Tittle = 'SolarisTech - Transaksi';
         $Transaksi = Transaksi::all();
 
-        $pdf = PDF::loadView('Admin.Transaksi.ExportPDF', compact('Transaksi', 'Tittle'));
+        $pdf = PDF::loadView('Admin.Transaksi.ExportPDF', compact('Transaksi', 'Tittle'))->setPaper('a4', 'landscape');
 
         return $pdf->download('LaporanPenjualanSolarisTech.pdf');
     }
