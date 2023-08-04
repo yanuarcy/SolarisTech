@@ -5,7 +5,7 @@
 @section('contentdashboard')
     <div class="container Dashboard">
         <div class="row">
-            <div class="headerTittle">
+            <div class="headerTittle text-white">
                 <h2 class="Tittle">{{ $Tittle }}</h2>
             </div>
             <div class="InfoPanel">

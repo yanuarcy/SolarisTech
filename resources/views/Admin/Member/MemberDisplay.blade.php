@@ -8,7 +8,7 @@
             </div>
         </div>
         <hr>
-        <div class="table-responsive border p-3 rounded-3" style="background-color: #191C24; color: white;">
+        <div class="table-responsive border p-3 rounded-3">
             <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="MemberTable">
                 <thead>
                     <tr>
