@@ -9,6 +9,9 @@
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
+                        <a href="{{ route('Transaksi.exportPdf') }}" class="btn btn-outline-danger">
+                            <i class="bi bi-download me-1"></i> to PDF
+                        </a>
                     </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">

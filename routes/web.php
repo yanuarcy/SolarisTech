@@ -51,6 +51,7 @@ Route::get('/Dashboard/OrderDetails', [OrderController::class, 'OrderDetails'])-
 Route::get('/Dashboard/Transaksi', [OrderController::class, 'Transaksi'])->name('Transaksi');
 Route::get('/Dashboard/Transaksi/updateStatus/{id}', [PaymentController::class, 'updateStatus'])->name('updateStatus')->middleware('auth', 'cekrole:admin');
 Route::get('/Dashboard/Transaksi/exportExcel', [OrderController::class, 'TransaksiexportExcel'])->name('Transaksi.exportExcel');
+Route::get('/Dashboard/Transaksi/exportPDF', [OrderController::class, 'TransaksiexportPdf'])->name('Transaksi.exportPdf');
 
 
 Auth::routes();

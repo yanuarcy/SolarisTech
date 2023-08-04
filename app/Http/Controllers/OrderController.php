@@ -9,16 +9,21 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TransaksiExport;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
 
 class OrderController extends Controller
 {
-    public function Order() {
+    public function Order()
+    {
         $Tittle = 'SolarisTech - Order';
 
         return view('Admin.Order.OrderDisplay', compact('Tittle'));
     }
 
-    public function OrderDetails() {
+    public function OrderDetails()
+    {
         $Tittle = 'SolarisTech - OrderDetails';
 
         $OrderDetails = Orderdetails::all();
@@ -29,10 +34,10 @@ class OrderController extends Controller
         }
 
         return view('Admin.OrderDetails.OrderDetailsDisplay', compact('Tittle', 'OrderDetails'));
-
     }
 
-    public function Transaksi() {
+    public function Transaksi()
+    {
         $Tittle = 'SolarisTech - Transaksi';
 
         $Transaksis = Transaksi::all();
@@ -53,7 +58,7 @@ class OrderController extends Controller
         if ($request->ajax()) {
             return datatables()->of($Orders)
                 ->addIndexColumn()
-                ->addColumn('actions', function($products) {
+                ->addColumn('actions', function ($products) {
                     return view('Layouts.actions', compact('products'));
                 })
                 ->editColumn('total_harga', function ($Orders) {
@@ -69,5 +74,15 @@ class OrderController extends Controller
     public function TransaksiexportExcel()
     {
         return Excel::download(new TransaksiExport, 'LaporanPenjualanSolarisTech.xlsx');
+    }
+
+    public function TransaksiexportPdf()
+    {
+        $Tittle = 'SolarisTech - Transaksi';
+        $Transaksi = Transaksi::all();
+
+        $pdf = PDF::loadView('Admin.Transaksi.ExportPDF', compact('Transaksi', 'Tittle'));
+
+        return $pdf->download('LaporanPenjualanSolarisTech.pdf');
     }
 }
