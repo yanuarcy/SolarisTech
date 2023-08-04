@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="row mb-0">
             <div class="col-lg-9 col-xl-6">
-                <h4 class="mb-3">{{ $Tittle }}</h4>
+                <h4 class="mb-3 text-white">{{ $Tittle }}</h4>
             </div>
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
