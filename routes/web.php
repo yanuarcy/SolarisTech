@@ -15,16 +15,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileCust;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
 Route::get('/AboutUs', [HomeController::class, 'aboutUs'])->name('AboutUs');
@@ -33,6 +23,10 @@ Route::get('/AboutUs', [HomeController::class, 'aboutUs'])->name('AboutUs');
 Route::fallback(function () {
     return view('app.404');
 });
+
+
+Auth::routes();
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 
 Route::middleware(['auth', 'cekrole:user'])->prefix('/CustProfile')->group(function () {
@@ -63,10 +57,6 @@ Route::middleware(['auth', 'cekrole:admin'])->prefix('/Dashboard')->group(functi
     });
 
 });
-
-
-Auth::routes();
-Route::post('/login', [LoginController::class, 'authenticate']);
 
 
 Route::prefix('/Produk')->group(function () {
