@@ -5,7 +5,7 @@
 @section('contentdashboard')
     <div class="container Dashboard">
         <div class="row">
-            <div class="headerTittle text-white">
+            <div class="headerTittle">
                 <h2 class="Tittle">{{ $Tittle }}</h2>
                 <h2><span id="current-time"></span></h2>
             </div>
@@ -13,7 +13,7 @@
 
                 <div class="card Member">
                     <div class="header">
-                        <h5>Member</h5>
+                        <h5><span>Member</span></h5>
                     </div>
                     <div class="main text-white">
                         <h4>{{ $MemberCount }}</h4>
@@ -179,7 +179,7 @@
                 labels: {
                     style: {
                         fontSize: '12px',
-                        colors: '#888888',
+                        colors: 'white',
                     },
                 },
                 tickPlacement: 'on',
@@ -197,7 +197,7 @@
                 labels: {
                     style: {
                         fontSize: '12px',
-                        colors: '#888888',
+                        colors: 'white',
                     },
                     formatter: function(value) {
                         return 'Rp' + value.toLocaleString(undefined, {
@@ -216,7 +216,7 @@
                 }
             },
             fill: {
-                colors: ['#adfa1d'],
+                colors: ['#7AD9FA'],
             },
             series: [{
                 name: 'Total',
