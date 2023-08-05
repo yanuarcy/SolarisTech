@@ -7,6 +7,7 @@
         <div class="row">
             <div class="headerTittle text-white">
                 <h2 class="Tittle">{{ $Tittle }}</h2>
+                <h2><span id="current-time"></span></h2>
             </div>
             <div class="InfoPanel">
 
@@ -226,5 +227,21 @@
         var chart = new ApexCharts(document.querySelector("#chart"), options);
 
         chart.render();
+
+        function updateCurrentTime() {
+            var currentTime = new Date();
+            var formattedTime = currentTime.toLocaleString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('current-time').textContent = formattedTime;
+        }
+
+        setInterval(updateCurrentTime, 1000);
+        updateCurrentTime();
     </script>
 @endpush
