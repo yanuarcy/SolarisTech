@@ -7,6 +7,12 @@ SolarisTech adalah sebuah website dinamis yang diharapkan bisa membantu Pengemba
 menggunakan bahasa PHP dengan bantuan Framework Laravel. Tidak hanya itu, pada SolarisTech ini juga terdapat beberapa packages yang
 bertujuan menyempurnakan website agar lebih fungsional. 
 
+## Preview
+
+Tampilan Halaman Admin
+
+![preview](https://github.com/yanuarcy/SolarisTech/blob/c3fc9893ae66d77c3d1e5bbb4693bb294b087ea0/AdminSolarisTech.jpg)
+
 ## Requirements
 
 Packages yang diperlukan agar SolarisTech bekerja:
