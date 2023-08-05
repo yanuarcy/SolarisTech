@@ -57,23 +57,33 @@ Route::get('/Dashboard/Transaksi/exportPDF', [OrderController::class, 'Transaksi
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/Produk', [OurProductController::class, 'index'])->name('GetProduk');
-Route::get('/Produk/{kategori}', [OurProductController::class, 'getKategori'])->name('GetKategori');
-Route::get('/DetailProduk/{id}', [OurProductController::class, 'DetailProduk'])->name('DetailProduk');
 
-Route::get('getMember', [MemberController::class, 'getData'])->name('Member.getData');
-Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
-Route::get('getKategori', [KategoriController::class, 'getData'])->name('Kategori.getData');
-Route::get('getOrder', [OrderController::class, 'getDataOrder'])->name('Order.getData');
+Route::prefix('/Produk')->group(function () {
+    Route::get('/', [OurProductController::class, 'index'])->name('GetProduk');
+    Route::get('/{kategori}', [OurProductController::class, 'getKategori'])->name('GetKategori');
+    Route::get('/DetailProduk/{id}', [OurProductController::class, 'DetailProduk'])->name('DetailProduk');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('getMember', [MemberController::class, 'getData'])->name('Member.getData');
+    Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
+    Route::get('getKategori', [KategoriController::class, 'getData'])->name('Kategori.getData');
+    Route::get('getOrder', [OrderController::class, 'getDataOrder'])->name('Order.getData');
+});
+
 
 Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/add-to-cart/{id}', [OurProductController::class, 'addToCart'])->name('addTo-Cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
 
-Route::post('/Payment', [PaymentController::class, 'index'])->name('Payment')->middleware('auth');
-Route::get('/Payment/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay')->middleware('auth');
-Route::get('/Payment/form', [PaymentController::class, 'showForm'])->name('showPaymentForm')->middleware('auth');
-Route::post('/Payment/proccess', [PaymentController::class, 'processPayment'])->name('processPayment')->middleware('auth');
-Route::get('/Payment/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo')->middleware('auth');
-Route::post('/Payment/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof')->middleware('auth');
+
+Route::middleware('auth')->prefix('/Payment')->group(function () {
+    Route::post('/', [PaymentController::class, 'index'])->name('Payment');
+    Route::get('/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay');
+    Route::get('/form', [PaymentController::class, 'showForm'])->name('showPaymentForm');
+    Route::post('/proccess', [PaymentController::class, 'processPayment'])->name('processPayment');
+    Route::get('/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo');
+    Route::post('/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof');
+});
+
