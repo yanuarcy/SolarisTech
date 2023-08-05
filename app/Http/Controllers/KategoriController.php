@@ -95,7 +95,7 @@ class KategoriController extends Controller
         }
 
         $Kategori = Kategori::find($id);
-        $Kategori->nm_kategori = $request->nm_kategori;
+        $Kategori->nm_kategori = $request->nm_kategori; //
         $Kategori->save();
 
         Alert::success('Changed Successfully', 'Kategori Data Changed Successfully.');
