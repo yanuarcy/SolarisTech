@@ -4,36 +4,21 @@
 
 @section('Content')
 
-    {{-- @if(empty($cart))
-        <script>
-            Swal.fire({
-                icon: 'warning',
-                title: 'Keranjang Belanja Kosong',
-                text: 'Keranjang belanja Anda kosong. Silakan tambahkan produk sebelum melakukan pembayaran.',
-                showCancelButton: false,
-                confirmButtonText: 'OK',
-                allowOutsideClick: false
-            }).then((result) => {
-                window.history.back();
-            });
-        </script>
-    @endif --}}
-
     <div class="container Box">
         <div class="row justify-content-center">
 
             <div class="col-md-5">
+
                 <div class="headerLeft">
                     <a class="h4" href="{{ route('cart') }}">
                         <i class="bi bi-arrow-left"></i> SolarisTech
                     </a>
-                    {{-- <p>Kode pesanan acak Anda adalah: <span id="order-code">{{ $orderCode }}</span></p> --}}
                 </div>
+
                 <div class="mainLeft mt-5">
                     @php
                         $total = 0;
                         $cart = [];
-                        // $cart = Cache::get('cart_' . auth()->user()->id, []);
 
                         if (auth()->check()) {
                             $cart = Cache::get('cart_' . auth()->user()->id, []);
@@ -82,50 +67,17 @@
                         </div>
                     @endif
 
-                    {{-- @if(!empty($selectedProducts))
-                        @foreach($selectedProducts as $productID)
-                            @php
-                                // Ambil informasi produk dari ID yang dipilih
-                                $product = \App\Models\Product::find($productID);
-                                $subTotal = $product->hg_produk * $product->quantity;
-                            @endphp
-                            <div class="row mt-4">
-                                <div class="col-md-2">
-                                    <div class="">
-                                        <img src="{{ Vite::asset('resources/images') }}/{{ $product->photo }}" width="100" height="100" class="img-responsive"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <h5 style="display: inline-block; margin-right: 10px; margin-left: 10px;">{{ $product->nm_produk }}</h5>
-                                    <h5 style="margin-left: 10px;">Rp {{ number_format($product->hg_produk, 0, ',', '.') }}</h5>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5 style="display: inline-block;" class="text-md-end">Rp {{ number_format($subTotal, 0, ',', '.') }}</h5>
-                                    <h5 class="text-md-end mt-3">x{{ $product->quantity }}</h5>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="row mt-5">
-                            <div class="col">
-                                <h5>Subtotal</h5>
-                            </div>
-                            <div class="col">
-                                <h5 class="text-md-end">Rp {{ number_format($total, 0, ',', '.') }}</h5>
-                            </div>
-                        </div>
-                    @endif --}}
-
                 </div>
             </div>
 
-            <div class="col-md-1">
-
-            </div>
+            <div class="col-md-1"></div>
 
             <div class="col-md-4">
+
                 <div class="headerRight">
                     <h4>Contact Information</h4>
                 </div>
+
                 <div class="mainRight mt-4">
                     <form action="{{ route('processPayment') }}" method="POST">
 
@@ -156,6 +108,7 @@
                         <input type="submit" value="Bayar" class="btn btn-primary w-75 mt-5">
                     </form>
                 </div>
+
             </div>
 
         </div>
@@ -178,13 +131,13 @@
             var bcaAccountDetails = document.getElementById("bca_account_details");
             var accountNumberSpan = document.getElementById("account_number");
             if (accountNumbers[this.value]) {
-                // Handling untuk BCA dan BNI
                 bcaAccountDetails.classList.add("w-75");
                 bcaAccountDetails.style.border = "1px solid #ccc";
                 bcaAccountDetails.style.borderTop = "none";
                 bcaAccountDetails.style.backgroundColor = "#f9f9f9";
                 bcaAccountDetails.style.display = "block";
                 bcaAccountDetails.style.padding = "10px";
+
                 // Tampilkan nomor rekening yang sesuai
                 accountNumberSpan.textContent = accountNumbers[this.value];
 
