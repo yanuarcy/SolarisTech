@@ -5,7 +5,7 @@
 @section('Content')
 
     <div class="container Box">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center bg-light rounded-3 border p-5">
 
             <div class="col-md-5">
 
