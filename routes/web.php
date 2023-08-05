@@ -28,30 +28,41 @@ use App\Http\Controllers\ProfileCust;
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
 Route::get('/AboutUs', [HomeController::class, 'aboutUs'])->name('AboutUs');
-Route::get('/CustProfile', [ProfileCust::class, 'CustProfile'])->name('CustProfile')->middleware('auth', 'cekrole:user');
-Route::get('/CustProfile/HistoryOrder', [ProfileCust::class, 'HistoryOrder'])->name('HistoryOrder')->middleware('auth', 'cekrole:user');
-Route::get('/Dashboard/AdminProfile', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile')->middleware('auth', 'cekrole:admin');
-Route::get('/Dashboard//AdminProfile/HistoryOrder', [ProfileCust::class, 'HistoryOrderAdmin'])->name('HistoryOrderAdmin')->middleware('auth', 'cekrole:admin');
 
-route::fallback(function () {
+
+Route::fallback(function () {
     return view('app.404');
 });
 
 
-
-Route::group(['middleware' => ['auth', 'cekrole:admin']], function () {
-    Route::get('Dashboard', [DashboardController::class, 'index'])->name('Dashboard');
+Route::middleware(['auth', 'cekrole:user'])->prefix('/CustProfile')->group(function () {
+    Route::get('/', [ProfileCust::class, 'CustProfile'])->name('CustProfile');
+    Route::get('/HistoryOrder', [ProfileCust::class, 'HistoryOrder'])->name('HistoryOrder');
 });
 
-Route::resource('/Dashboard/Member', MemberController::class);
-Route::resource('/Dashboard/Kategori', KategoriController::class);
-Route::resource('/Dashboard/Product', ProductController::class);
-Route::get('/Dashboard/Order', [OrderController::class, 'Order'])->name('Order');
-Route::get('/Dashboard/OrderDetails', [OrderController::class, 'OrderDetails'])->name('OrderDetails');
-Route::get('/Dashboard/Transaksi', [OrderController::class, 'Transaksi'])->name('Transaksi');
-Route::get('/Dashboard/Transaksi/updateStatus/{id}', [PaymentController::class, 'updateStatus'])->name('updateStatus')->middleware('auth', 'cekrole:admin');
-Route::get('/Dashboard/Transaksi/exportExcel', [OrderController::class, 'TransaksiexportExcel'])->name('Transaksi.exportExcel');
-Route::get('/Dashboard/Transaksi/exportPDF', [OrderController::class, 'TransaksiexportPdf'])->name('Transaksi.exportPdf');
+
+Route::middleware(['auth', 'cekrole:admin'])->prefix('/Dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('Dashboard');
+    Route::resource('/Member', MemberController::class);
+    Route::resource('/Kategori', KategoriController::class);
+    Route::resource('/Product', ProductController::class);
+    Route::get('/Order', [OrderController::class, 'Order'])->name('Order');
+    Route::get('/OrderDetails', [OrderController::class, 'OrderDetails'])->name('OrderDetails');
+
+    Route::prefix('/AdminProfile')->group(function () {
+        Route::get('/', [ProfileCust::class, 'AdminProfile'])->name('AdminProfile');
+        Route::get('/HistoryOrder', [ProfileCust::class, 'HistoryOrderAdmin'])->name('HistoryOrderAdmin');
+    });
+
+
+    Route::prefix('/Transaksi')->group(function () {
+        Route::get('/', [OrderController::class, 'Transaksi'])->name('Transaksi');
+        Route::get('/updateStatus/{id}', [PaymentController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/exportExcel', [OrderController::class, 'TransaksiexportExcel'])->name('Transaksi.exportExcel');
+        Route::get('/exportPDF', [OrderController::class, 'TransaksiexportPdf'])->name('Transaksi.exportPdf');
+    });
+
+});
 
 
 Auth::routes();
@@ -64,7 +75,8 @@ Route::prefix('/Produk')->group(function () {
     Route::get('/DetailProduk/{id}', [OurProductController::class, 'DetailProduk'])->name('DetailProduk');
 });
 
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth', 'cekrole:admin'])->group(function () {
     Route::get('getMember', [MemberController::class, 'getData'])->name('Member.getData');
     Route::get('getProduct', [ProductController::class, 'getData'])->name('Product.getData');
     Route::get('getKategori', [KategoriController::class, 'getData'])->name('Kategori.getData');
@@ -80,10 +92,14 @@ Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remo
 
 Route::middleware('auth')->prefix('/Payment')->group(function () {
     Route::post('/', [PaymentController::class, 'index'])->name('Payment');
-    Route::get('/uploadProof/{id}', [PaymentController::class, 'Pay'])->name('Pay');
     Route::get('/form', [PaymentController::class, 'showForm'])->name('showPaymentForm');
     Route::post('/proccess', [PaymentController::class, 'processPayment'])->name('processPayment');
-    Route::get('/UploadProof', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo');
-    Route::post('/UploadProof/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof');
+
+    Route::prefix('UploadProof')->group(function () {
+        Route::get('/', [PaymentController::class, 'showPaymentInfo'])->name('showPaymentInfo');
+        Route::get('/{id}', [PaymentController::class, 'Pay'])->name('Pay');
+        Route::post('/process', [PaymentController::class, 'processPaymentProof'])->name('processUploadProof');
+    });
+
 });
 
