@@ -125,7 +125,7 @@
                         </div>
                         <div class="Box">
                             <div class="MainRecentSales">
-                                @foreach ($Transaksis as $Transaksi )
+                                @foreach ($Transaksis as $Transaksi)
                                     <div class="row mb-4">
                                         <div class="col-md-2">
                                             <i class="bi bi-person-circle"></i>
@@ -198,8 +198,11 @@
                         fontSize: '12px',
                         colors: '#888888',
                     },
-                    formatter: function (value) {
-                        return 'Rp' + value.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                    formatter: function(value) {
+                        return 'Rp' + value.toLocaleString(undefined, {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0
+                        });
                     }
                 },
                 tickAmount: 5,
