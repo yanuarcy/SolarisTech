@@ -46,7 +46,7 @@
                         <img src="{{ Vite::asset('resources/images/' . $product->photo) }}" class="card-img-top"
                             alt="{{ $product->nm_produk }}">
                     @else
-                        Gambar tidak tersedia
+                        Gambar Tidak Tersedia
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->nm_produk }}</h5>
@@ -57,9 +57,6 @@
                         <a href="{{ route('addTo-Cart', $product->id) }}" class="btn btn-primary addToCartBtn">
                             <i class="bi bi-cart3"></i>
                         </a>
-                        {{-- <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-cart3"></i></button>
-                        </form> --}}
                     </div>
                 </div>
             @endforeach
