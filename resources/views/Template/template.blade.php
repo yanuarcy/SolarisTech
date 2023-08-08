@@ -36,6 +36,10 @@
 
     @elseif ( $RouteSaatIni == 'cart' ) BgCart
 
+    @elseif ( $RouteSaatIni == 'Payment' ) BgPayment
+
+    @elseif ( $RouteSaatIni == 'showPaymentInfo' ) BgPaymentInfo
+
     @endif
 ">
 
