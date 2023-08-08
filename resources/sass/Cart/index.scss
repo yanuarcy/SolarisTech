@@ -13,12 +13,17 @@
 //     border-radius: 10px;
 // }
 
+#blog-home {
+    color: white;
+}
+
 #cart-container {
     overflow-x: auto;
 }
 
 #cart-container table {
     border-collapse: collapse;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     table-layout: fixed;
     white-space: nowrap;
@@ -29,7 +34,7 @@
 }
 
 #cart-container table thead td {
-    background: #25AD73;
+    background: #f18723;
     color: #fff;
     border: none;
     padding: 6px 0;
@@ -104,11 +109,12 @@
 #cart-bottom .coupon>div,
 #cart-bottom .total>div {
     border: 1px solid #b6b3b3;
+    background-color: rgb(255, 255, 255);
 }
 
 #cart-bottom .coupon h5,
 #cart-bottom .total h5 {
-    background: #25AD73;
+    background: #f18723;
     color: #fff;
     border: none;
     padding: 6px 12px;
